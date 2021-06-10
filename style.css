@@ -1,0 +1,109 @@
+* {
+  font-family: "DM Sans", sans-serif;
+  list-style-type: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  max-width: 1440px;
+  margin: auto;
+  display: grid;
+}
+
+a {
+  text-decoration: none;
+  color: #901C1C;
+}
+
+.nav__ul, header, nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tag {
+  border: 0.5px solid #C4C4C4;
+  border-radius: 11px;
+  padding: 0 0.6rem;
+  margin: 0 0.1rem;
+  align-self: center;
+}
+
+.tag span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+header {
+  margin-top: 2.8rem;
+  margin-bottom: 4rem;
+}
+
+.logo {
+  width: 200px;
+  text-align: center;
+  flex: 1;
+}
+
+nav {
+  flex: 2;
+}
+
+h1 {
+  color: #901C1C;
+  font-weight: normal;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 458px 458px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user__lien {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user__img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user__titre {
+  font-size: 2.5rem;
+  color: #D3573C;
+  font-weight: 400;
+  text-align: center;
+}
+.user__lieu {
+  font-size: 0.8rem;
+  color: #901C1C;
+  text-align: center;
+}
+.user__para {
+  font-size: 0.6rem;
+  text-align: center;
+  margin: 0.2rem auto;
+}
+.user__prix {
+  font-size: 0.55rem;
+  color: #757575;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.user__tag {
+  display: flex;
+}
+
+/*# sourceMappingURL=style.css.map */

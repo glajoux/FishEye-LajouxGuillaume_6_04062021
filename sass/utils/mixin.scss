@@ -1,0 +1,45 @@
+@mixin tag-box {
+    border : 0.5px solid $color-border;
+    border-radius: 11px;
+    padding: 0 0.6rem;
+    margin: 0 0.1rem;
+    align-self: center;
+}
+
+@mixin user-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@mixin text-align{
+    text-align: center;
+}
+
+@mixin user-titre{
+    font-size: 2.5rem;
+    color: $color-sec;
+    font-weight: 400;
+    @include text-align;
+}
+
+@mixin user-lieu{
+    font-size: 0.8rem;
+    color: $color-prim;
+    @include text-align;
+}
+
+@mixin user-para{
+    font-size: 0.6rem;
+    @include text-align;
+    margin: 0.2rem auto;
+
+}
+
+@mixin user-prix{
+    font-size: 0.55rem;
+    color : $color-prix;
+    @include text-align;
+    margin-bottom: 0.5rem;
+}

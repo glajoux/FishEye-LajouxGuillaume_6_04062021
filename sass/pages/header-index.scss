@@ -1,0 +1,38 @@
+.nav__ul, header, nav{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tag{
+    @include tag-box;
+}
+
+
+.tag span{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+header{
+    margin-top: 2.8rem;
+    margin-bottom: 4rem;
+}
+
+.logo {
+    width: 200px;
+    text-align: center;
+    flex: 1;
+}
+
+nav{
+    flex: 2;
+}
+
+h1{
+    color: $color-prim;
+    font-weight: normal;
+    font-size: 2.5rem;
+    text-align: center;
+}
+

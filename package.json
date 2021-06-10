@@ -1,0 +1,12 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./style.css",
+    "prefix": "postcss ./style.css --use autoprefixer -d ./prefixed"
+  },
+  "author": "Guillaume LAJOUX",
+  "license": "ISC"
+}

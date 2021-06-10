@@ -1,0 +1,36 @@
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 458px 458px;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__lien{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__img{
+        @include user-img;
+    }
+    &__titre{
+        @include user-titre;
+    }
+    &__lieu{
+        @include user-lieu;
+    }
+    &__para{
+        @include user-para;
+    }
+    &__prix{
+        @include user-prix;
+    }
+    &__tag{
+        display: flex;
+    }
+}
+
+

@@ -58,7 +58,7 @@ function insertPointHtml(nom){
 function lienPhotoCreation(nom, classe){
   insertPointHtml(nom)
   lienPhoto = document.createElement("a");
-  lienPhoto.setAttribute("herf", site)
+  lienPhoto.setAttribute("href", site)
   lienPhoto.classList.add(classe)
   return lienPhoto
 };
@@ -68,7 +68,7 @@ function imgCreation(classe, nom, chemin) {
   image = document.createElement("img");
   image.classList.add(classe);
   image.setAttribute("alt", nom);
-  image.setAttribute("href", chemin);
+  image.setAttribute("src", chemin);
   return image;
 };
 
@@ -112,9 +112,10 @@ return listeUl
 };
 
 // Crée une balise li
-function liCreation(classe, tag){
+function liCreation(classe, classe2, tag){
   listeLi = document.createElement("li");
   listeLi.classList.add(classe);
+  listeLi.classList.add(classe2);
   listeLi.setAttribute("aria-label", tag);
 return listeLi
 };
@@ -122,7 +123,7 @@ return listeLi
 // Crée une balise a
 function lienTagCreation(ref){
 lienTag = document.createElement("a");
-lienTag.setAttribute("herf", ref)
+lienTag.setAttribute("href", ref)
 return lienTag
 };
 
@@ -153,7 +154,7 @@ function photographeCreation(photographe) {
     paraPrixCreation(`${classBem}${classList[5]}`, photographe[i].price);
     ulCreation(`${classBem}${classList[6]}`);
     tagTableau.forEach(function(tag){
-      liCreation(`tag ${tag}`, `tag__${tag}`)
+      liCreation("tag", tag, `tag__${tag}`)
       lienTagCreation("#")
       spanCreation(tag)
       listeLi.appendChild(lienTag);

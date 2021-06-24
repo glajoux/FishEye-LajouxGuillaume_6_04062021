@@ -14,174 +14,233 @@ let span = "";
 let lienTag = "";
 let site = "";
 
-
 function dataMedias(value) {
   console.log(value);
 }
 
-//Récupère les données JSON
-function recupJSON (){
-
-  fetch("FishEyeData.json")
-  .then(function (res) {
-    if (res.ok) {
-      return res.json();
-    }
-  })
-  .then(function (value) {
-    console.log(value.photographers);
-    photographeCreation(value.photographers);
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+class photographe {
+  constructor(photographe) {
+    this.city = photographe.city;
+    this.country = photographe.country;
+    this.id = photographe.id;
+    this.name = photographe.name;
+    this.portrait = photographe.portrait;
+    this.price = photographe.price;
+    this.tagline = photographe.tagline;
+    this.tags = photographe.tags;
+  }
+  createPhotographe = function(dom) {
+    dom.innerHTML +=
+    `
+      <article class="user">
+        <a href="./html/${insertPointHtml(this.name)}.html" class="user__lien">
+            <img class="user__img" src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${this.name}">
+            <h2 class=use__titre>${this.name}</h2>
+        </a>
+        <p class="localization">${this.city}, ${this.country}</p>
+        <p class="tagline">${this.tagline}</p>
+        <p class="price">${this.price}€/jour</p>
+        <ul class="user__tag">${this.tags
+          .map((tag) => `<li class="tag ${tag}" aria-label="tag__${tag}"><a href="#"><span>#${tag}</span></a></li>`)
+          .join("")}</ul>     
+      </article>
+    `; 
+  }
 };
-  
-window.addEventListener("onload", recupJSON())
 
-// Crée une balise article 
-function articleCreation(classBem, id) {
-  article = document.createElement("article")
-  article.classList.add(classBem)
-  article.setAttribute("id", id)
-  return article
-};
-
-// Crée un lien qui renvoie sur la page du photographe
-function insertPointHtml(nom){
+function insertPointHtml(nom) {
   site = nom.split(" ").join("");
   site = "./html/" + site + ".html";
   return site;
 };
 
-// Crée une balise a 
-function lienPhotoCreation(nom, classe){
-  insertPointHtml(nom)
-  lienPhoto = document.createElement("a");
-  lienPhoto.setAttribute("href", site)
-  lienPhoto.classList.add(classe)
-  return lienPhoto
-};
+function recupJSON() {
+  fetch("FishEyeData.json")
+    .then(function (res) {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then(function (value) {
+      let tableauPhotographes = value.photographers;
+      console.log(tableauPhotographes);
 
-// Crée une balise img 
+      tableauPhotographes.forEach(photographer => {
+        let photographeModel = new photographe (photographer)
+        photographeModel.createPhotographe(mainConteneur)
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
+
+
+window.addEventListener("onload", recupJSON());
+
+/*
+//Récupère les données JSON
+function recupJSON() {
+  fetch("FishEyeData.json")
+    .then(function (res) {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then(function (value) {
+      console.log(value.photographers);
+      photographeCreation(value.photographers);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
+*/
+
+
+
+/*
+// Crée une balise article
+function articleCreation(classBem, id) {
+  article = document.createElement("article");
+  article.classList.add(classBem);
+  article.setAttribute("id", id);
+  return article;
+}
+
+// Crée un lien qui renvoie sur la page du photographe
+function insertPointHtml(nom) {
+  site = nom.split(" ").join("");
+  site = "./html/" + site + ".html";
+  return site;
+}
+
+// Crée une balise a
+function lienPhotoCreation(nom, classe) {
+  insertPointHtml(nom);
+  lienPhoto = document.createElement("a");
+  lienPhoto.setAttribute("href", site);
+  lienPhoto.classList.add(classe);
+  return lienPhoto;
+}
+
+// Crée une balise img
 function imgCreation(classe, nom, chemin) {
   image = document.createElement("img");
   image.classList.add(classe);
   image.setAttribute("alt", nom);
   image.setAttribute("src", chemin);
   return image;
-};
+}
 
-// Crée une balise h2 
-function h2Creation (classe, nom){
-  titreH2 = document.createElement("h2")
+// Crée une balise h2
+function h2Creation(classe, nom) {
+  titreH2 = document.createElement("h2");
   titreH2.classList.add(classe);
-  titreH2.innerText = nom
+  titreH2.innerText = nom;
   return titreH2;
-};
+}
 
-// Crée une balise p 
-function paraLieuCreation (classe, city, country) {
+// Crée une balise p
+function paraLieuCreation(classe, city, country) {
   paraLieu = document.createElement("p");
   paraLieu.classList.add(classe);
   paraLieu.innerText = city + ", " + country;
-  return paraLieu
-};
+  return paraLieu;
+}
 
-// Crée une balise p 
-function paraTaglineCreation (classe, tagline) {
+// Crée une balise p
+function paraTaglineCreation(classe, tagline) {
   paraTagline = document.createElement("p");
   paraTagline.classList.add(classe);
   paraTagline.innerText = tagline;
-  return paraTagline
-};
+  return paraTagline;
+}
 
-// Crée une balise p 
-function paraPrixCreation (classe, prix) {
+// Crée une balise p
+function paraPrixCreation(classe, prix) {
   paraPrix = document.createElement("p");
   paraPrix.classList.add(classe);
   paraPrix.innerText = prix + "€/jour";
-  return paraPrix
-};
+  return paraPrix;
+}
 
 // Crée une balise ul
-function ulCreation (classe){
+function ulCreation(classe) {
   listeUl = document.createElement("ul");
   listeUl.classList.add(classe);
-return listeUl
-};
+  return listeUl;
+}
 
 // Crée une balise li
-function liCreation(classe, classe2, tag){
+function liCreation(classe, classe2, tag) {
   listeLi = document.createElement("li");
   listeLi.classList.add(classe);
   listeLi.classList.add(classe2);
   listeLi.setAttribute("aria-label", tag);
-return listeLi
-};
+  return listeLi;
+}
 
 // Crée une balise a
-function lienTagCreation(ref){
-lienTag = document.createElement("a");
-lienTag.setAttribute("href", ref)
-return lienTag
-};
+function lienTagCreation(ref) {
+  lienTag = document.createElement("a");
+  lienTag.setAttribute("href", ref);
+  return lienTag;
+}
 
 // Crée une balise span
-function spanCreation(array){
-span = document.createElement("span");
-span.innerText = array;
-return span;
-};
+function spanCreation(array) {
+  span = document.createElement("span");
+  span.innerText = array;
+  return span;
+}
 
 // Crée une une balise article de photographe qui contient toutes les informations contenues dans le JSON
 function photographeCreation(photographe) {
   const classBem = "user";
   const chemin = "./photos/Photographers_ID_Photos/";
-  const classList = ["__lien", "__img", "__titre", "__lieu", "__tagline", "__prix", "__tag"];
-  for (i=0; i<photographe.length; i++){
-    let tagTableau = photographe[i].tags
+  const classList = [
+    "__lien",
+    "__img",
+    "__titre",
+    "__lieu",
+    "__tagline",
+    "__prix",
+    "__tag",
+  ];
+  for (i = 0; i < photographe.length; i++) {
+    let tagTableau = photographe[i].tags;
     console.log(tagTableau);
     articleCreation(classBem, photographe[i].id);
     lienPhotoCreation(photographe[i].name, `${classBem}${classList[0]}`);
-    imgCreation(`${classBem}${classList[1]}`, photographe[i].name, `${chemin}${photographe[i].portrait}`);
+    imgCreation(
+      `${classBem}${classList[1]}`,
+      photographe[i].name,
+      `${chemin}${photographe[i].portrait}`
+    );
     h2Creation(`${classBem}${classList[2]}`, photographe[i].name);
     article.appendChild(lienPhoto);
     lienPhoto.append(image, titreH2);
     //Essayer de le faire rentrer dans une boucle
-    paraLieuCreation(`${classBem}${classList[3]}`, photographe[i].city, photographe[i].country);
+    paraLieuCreation(
+      `${classBem}${classList[3]}`,
+      photographe[i].city,
+      photographe[i].country
+    );
     paraTaglineCreation(`${classBem}${classList[4]}`, photographe[i].tagline);
     paraPrixCreation(`${classBem}${classList[5]}`, photographe[i].price);
     ulCreation(`${classBem}${classList[6]}`);
-    tagTableau.forEach(function(tag){
-      liCreation("tag", tag, `tag__${tag}`)
-      lienTagCreation("#")
-      spanCreation(tag)
+    tagTableau.forEach(function (tag) {
+      liCreation("tag", tag, `tag__${tag}`);
+      lienTagCreation("#");
+      spanCreation(`#${tag}`);
       listeLi.appendChild(lienTag);
       lienTag.appendChild(span);
       listeUl.appendChild(listeLi);
-    })
+    });
     article.append(paraLieu, paraTagline, paraPrix, listeUl);
     mainConteneur.appendChild(article);
-  };
-};
-/*
-photographe[i].tag.forEach(tag => {
-  liCreation(`tag ${tag.tags}`, `tag__${tag.tags}`)
-  lienTagCreation("#");
-  spanCreation(tag.tags)
-  listeLi.appendChild(lienTag);
-  lienTag.appendChild(span);
-  listeUl.appendChild(listeLi);
-});
-
-    tagTableau.forEach(function(tag){
-      liCreation(`tag ${tag}`, `tag__${tag}`)
-      lienTagCreation("#")
-      spanCreation(tag)
-      listeLi.appendChild(lienTag);
-      lienTag.appendChild(span);
-      listeUl.appendChild(listeLi);
-    })
-
+  }
+}
 */
+

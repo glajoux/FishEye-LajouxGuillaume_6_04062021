@@ -17,6 +17,19 @@ a {
   color: #901C1C;
 }
 
+#contenu {
+  background-color: #DB8876;
+  border-radius: 5px;
+  width: 13%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-left: 0.8rem;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .nav__ul, header, nav {
   display: flex;
   justify-content: space-between;

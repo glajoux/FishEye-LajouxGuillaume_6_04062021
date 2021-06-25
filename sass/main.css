@@ -78,7 +78,8 @@ main {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .user__titre {
   font-size: 2.5rem;
@@ -104,8 +105,6 @@ main {
 }
 .user__tag {
   display: flex;
-  cursor: pointer;
-  color: #901C1C;
 }
 
 .header__logo {
@@ -118,17 +117,9 @@ main {
   width: 13%;
   font-weight: bold;
   font-size: 1.5rem;
-  padding-left: 1.6rem;
+  padding-left: 1rem;
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  transition: 0.2s;
-}
-
-#contenu a {
-  text-decoration: none;
-  color: black;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=main.css.map */

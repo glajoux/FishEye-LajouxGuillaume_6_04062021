@@ -30,6 +30,8 @@ main{
     }
     &__tag{
         display: flex;
+        cursor: pointer;
+        color: $color-prim;
     }
 }
 

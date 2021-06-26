@@ -23,7 +23,7 @@ const recupJSON = async () => {
       dataPhotographes = data.photographers;
       dataMedias = data.media;
     })
-    console.log(dataPhotographes);
+    // console.log(dataPhotographes);
     // console.log(dataMedias);
 }
 
@@ -84,8 +84,7 @@ const triPhotographe = async () => {
   events = document.querySelectorAll(".events");
   articles = document.querySelectorAll(".user");
   tableauDesTags = [portrait, art, fashion, architecture, travel, sport, animals, events];
-  // console.log(users[0].outerHTML);
-  console.log(users);
+  // console.log(users);
 }
 
 const affichageParTag = async() =>{
@@ -97,17 +96,24 @@ const affichageParTag = async() =>{
         let tagClass = e.target.className; 
         articles.forEach(article => {
           let testTag = article.innerHTML;
-          console.log(testTag);
           if (!testTag.includes(tagClass)){
             article.classList.add("supprime");
           } else {
             article.classList.remove("supprime");
-          }
-        })
+          };
+        });
 
-      })
-   })
- })
-}
+      });
+   });
+ });
+};
+
+window.addEventListener('scroll', function() {
+  if(document.documentElement.scrollTop > 100){
+    document.getElementById("contenu").style["visibility"] = "visible"
+  } else {
+    document.getElementById("contenu").style["visibility"] = "hidden"
+  }
+});
 
 affichageParTag()

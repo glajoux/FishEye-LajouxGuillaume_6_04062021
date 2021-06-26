@@ -10,7 +10,7 @@ let sport = [];
 let animals = [];
 let events = [];
 let tableauDesTags = [];
-
+let users = [];
 
 let dataPhotographes =[];
 let dataMedias = [];
@@ -73,6 +73,7 @@ function insertPointHtml(nom) {
 
 const triPhotographe = async () => {
   await recupJSON();
+  await creationPhotographe();
   portrait = document.querySelectorAll(".portrait");
   art = document.querySelectorAll(".art");
   fashion = document.querySelectorAll(".fashion");
@@ -81,8 +82,10 @@ const triPhotographe = async () => {
   sport = document.querySelectorAll(".sport");
   animals = document.querySelectorAll(".animals");
   events = document.querySelectorAll(".events");
+  articles = document.querySelectorAll(".user");
   tableauDesTags = [portrait, art, fashion, architecture, travel, sport, animals, events];
-  // console.log(tableauDesTags);
+  // console.log(users[0].outerHTML);
+  console.log(users);
 }
 
 const affichageParTag = async() =>{
@@ -92,9 +95,14 @@ const affichageParTag = async() =>{
       noeud.addEventListener("click", function(e){
         e.stopPropagation()
         let tagClass = e.target.className; 
-        dataPhotographes.forEach((photographe) => {
-          let tags = photographe.tags
-          console.log(tags);
+        articles.forEach(article => {
+          let testTag = article.innerHTML;
+          console.log(testTag);
+          if (!testTag.includes(tagClass)){
+            article.classList.add("supprime");
+          } else {
+            article.classList.remove("supprime");
+          }
         })
 
       })
@@ -102,8 +110,4 @@ const affichageParTag = async() =>{
  })
 }
 
-
-
-creationPhotographe()
-triPhotographe()
 affichageParTag()

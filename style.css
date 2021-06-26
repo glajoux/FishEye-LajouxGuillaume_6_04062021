@@ -108,6 +108,10 @@ main {
   color: #901C1C;
 }
 
+.supprime {
+  display: none;
+}
+
 .header__logo {
   text-align: left;
 }

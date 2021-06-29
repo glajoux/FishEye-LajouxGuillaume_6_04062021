@@ -1,23 +1,16 @@
+import * as utils from "./js/utils.js";
+
 //Elements du DOM
 const mainConteneur = document.getElementById("main__index");
-// const nomUrl = ["Ellie-RoseWilkens", "MimiKeel", "TracyGalindo", "NabeelBradford", "RhodeDubois", "MarcelNikolic"]
+utils.test()
 
-
-let portrait = [];
-let art = [];
-let fashion = [];
-let architecture = [];
-let travel = [];
-let sport = [];
-let animals = [];
-let events = [];
 let tableauDesTags = [];
-let users = [];
+let articles =[];
+let url = window.location.href;
 
 let dataPhotographes =[];
 let dataMedias = [];
 let site = "";
-let url = window.location.href;
 console.log(url);
 
 const recupJSON = async () => {
@@ -51,7 +44,7 @@ class photographe {
     dom.innerHTML +=
     `
       <article class="user">
-        <a href="./html/${insertPointHtml(this.name)}.html" class="user__lien">
+        <a href="./html/${insertPointHtml(this.name)}.${this.id}.html" class="user__lien">
             <img class="user__img" src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${this.name}">
             <h2 class=user__titre>${this.name}</h2>
         </a>
@@ -65,7 +58,7 @@ class photographe {
     `; 
   }
 
-  ceartePagePhotographe = function(dom) {
+  createPagePhotographe = function(dom) {
     dom.innerHTML +=
     `
     <section id="photographe">
@@ -103,19 +96,17 @@ function insertPointHtml(nom) {
 
 // Récupère les éléments du Dom qui correspondent au tag et les mets dans un tableau
 const triPhotographe = async () => {
-  await recupJSON();
   await creationPhotographe();
-  portrait = document.querySelectorAll(".portrait");
-  art = document.querySelectorAll(".art");
-  fashion = document.querySelectorAll(".fashion");
-  architecture = document.querySelectorAll(".architecture");
-  travel = document.querySelectorAll(".travel");
-  sport = document.querySelectorAll(".sport");
-  animals = document.querySelectorAll(".animals");
-  events = document.querySelectorAll(".events");
+  let portrait = document.querySelectorAll(".portrait");
+  let art = document.querySelectorAll(".art");
+  let fashion = document.querySelectorAll(".fashion");
+  let architecture = document.querySelectorAll(".architecture");
+  let travel = document.querySelectorAll(".travel");
+  let sport = document.querySelectorAll(".sports");
+  let animals = document.querySelectorAll(".animals");
+  let events = document.querySelectorAll(".events");
   articles = document.querySelectorAll(".user");
   tableauDesTags = [portrait, art, fashion, architecture, travel, sport, animals, events];
-  // console.log(users);
 };
 
 //Permet lors d'un clic sur un tag d'afficher seuelement les photographes ayant le même tag
@@ -134,7 +125,6 @@ const affichageParTag = async() =>{
             article.classList.remove("supprime");
           };
         });
-
       });
    });
  });
@@ -151,9 +141,4 @@ window.addEventListener('scroll', function() {
 
 affichageParTag()
 
-const pagePhotographe = async() =>{
-  await recupJSON();
-  if (url.includes(insertPointHtml(dataPhotographes.name))){
-    console.log('gg');
-  }
-};
+

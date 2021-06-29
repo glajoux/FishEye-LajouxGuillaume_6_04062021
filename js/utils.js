@@ -1,5 +1,9 @@
-const test = () =>{
-    console.log('test');
-};
+export const test = () => console.log("test");
 
-export {test}; 
+export function insertPointHtml(nom) {
+    site = nom.split(" ").join("");
+    return site;
+  };
+
+  
+

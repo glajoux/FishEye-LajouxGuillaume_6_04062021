@@ -74,7 +74,37 @@ class photographe {
 function insertPointHtml(nom) {
     site = nom.split(" ").join("");
     return site;
-  };
+};
 
 
-export {recupJSON, insertPointHtml, photographe, dataPhotographes, dataMedias, site};
+class mediaVignette {
+    constructor(media) {
+    this.date = media.date;
+    this.id = media.id;
+    this.image = media.image;
+    this.likes = media.likes;
+    this.photographerId = media.photographerId;
+    this.price = media.price;
+    this.tags = media.tags;
+    this.title = media.title;
+    this.video = media.video;
+  }
+
+  createMedia = function (dom) {
+    dom.innerHTML +=
+    `
+      <article class="vignette">
+        <img src="../photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo">
+        <p class="vignette__titre">${this.title}</p>
+        <div class="vignette__like">
+          <p class="vignette__like__nbr">${this.likes}</p>    
+          <img src="../photos/coeur.svg" alt="likes" class="vignette__img">
+        </div>        
+      </article>
+
+    `
+  }
+}
+
+
+export {recupJSON, insertPointHtml, photographe, dataPhotographes, dataMedias, site, mediaVignette};

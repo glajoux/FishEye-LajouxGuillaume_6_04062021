@@ -168,6 +168,10 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
+.photographe__contact:hover {
+  background-color: #D3573C;
+  color: black;
+}
 
 .info__titre {
   font-size: 2.5rem;
@@ -198,6 +202,64 @@ nav {
 .info__tag {
   display: flex;
   font-size: 18px;
+}
+
+.selection {
+  margin-top: 20px;
+  margin-bottom: 58px;
+}
+.selection__tri {
+  font-weight: 700;
+  margin-right: 20px;
+}
+.selection__triage {
+  background-color: #901C1C;
+  color: white;
+  border: none;
+  height: 69px;
+  width: 170px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+.selection__triage:hover {
+  background-color: #D3573C;
+  color: black;
+}
+
+.media {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.vignette {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 350px;
+  margin-bottom: 30px;
+}
+.vignette__photo {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.vignette__like {
+  display: flex;
+}
+.vignette__like__nbr {
+  color: #901C1C;
+  font-size: 1.2rem;
+}
+.vignette__img {
+  margin-left: 5px;
+}
+.vignette__titre {
+  color: #901C1C;
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

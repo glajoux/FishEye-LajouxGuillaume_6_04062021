@@ -17,6 +17,10 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        &:hover{
+            background-color: $color-sec;
+            color: black;
+        }
     }
 }
 
@@ -43,5 +47,63 @@
     &__tag{
         display: flex;
         font-size: 18px;
+    }
+}
+
+.selection{
+    margin-top: 20px;
+    margin-bottom: 58px;
+    &__tri{
+        font-weight: 700;
+        margin-right: 20px;
+    }
+    &__triage{
+        background-color: $color-prim;
+        color: white;
+        border: none;
+        height: 69px;
+        width: 170px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+            background-color: $color-sec;
+            color: black;
+        }
+    }
+}
+
+.media{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.vignette{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 350px;
+    margin-bottom: 30px;
+    &__photo{
+        width: 350px;
+        height: 300px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    &__like{
+        display: flex;
+        &__nbr{
+            color: $color-prim;
+            font-size: 1.2rem;
+        }
+    }
+    &__img{
+        margin-left: 5px;
+    }
+    &__titre{
+        color: $color-prim;
+        font-size: 1.2rem;
     }
 }

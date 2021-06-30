@@ -1,35 +1,21 @@
-import * as utils from "./utils.js";
-import {insertPointHtml} from "./utils.js";
+import { recupJSON, dataPhotographes, photographe, dataMedias} from "./utils.js";
 
-let testDataPhotographes = [];
-let testDataMedias = [];
-let site = "";
-let url = window.location.href;
+const mainPagePhotographe = document.getElementById("main__photographe");
 
+//Récupère l'id dans l'url (?id=...)
 
+let urlRechercheParams = new URLSearchParams(window.location.search);
+let idUrl = parseInt(urlRechercheParams.get("id")); 
 
-const testRecupJSON = async () => {
-    await fetch("../FishEyeData.json")
-      .then((res) => res.json())
-      .then(function(data){
-        testDataPhotographes = data.photographers;
-        testDataMedias = data.media;
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-      console.log(testDataPhotographes);
-      // console.log(testDataMedias);
-  };
+async function pagePhotographe() {
+  await recupJSON();
+  console.log(dataPhotographes);
+  console.log(dataMedias);
+  let idPhotographe = dataPhotographes.filter(el => el.id === idUrl);
+  console.log(idPhotographe);
   
-  testRecupJSON()
+  let page = new photographe (idPhotographe[0])
+  page.createPagePhotographe(mainPagePhotographe)
+};
 
-  const pagePhotographe = async() =>{
-    await testRecupJSON();
-    console.log(testDataPhotographes.name);
-    if (url.includes(insertPointHtml(testDataPhotographes.name))){
-      console.log('yes');
-    }
-  };
-  
-  pagePhotographe()
+pagePhotographe()

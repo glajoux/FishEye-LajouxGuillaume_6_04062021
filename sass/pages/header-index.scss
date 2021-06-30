@@ -6,6 +6,18 @@
 
 .tag{
     @include tag-box;
+    cursor: pointer;
+    color: $color-prim;
+    &:hover{
+        background-color: $color-prim;
+        color: white;
+        & span{
+            &:hover{
+                color: white;
+            }
+        
+        }
+    }
 }
 
 

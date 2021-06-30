@@ -1,0 +1,47 @@
+.photographe{
+    background-color: $color-back;
+    height: 313px;
+    padding: 63px 50px 0 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 200px;
+    &__image{
+        @include user-img;
+    }
+    &__contact{
+        height: 69px;
+        width: 170px;
+        color: white;
+        background-color: $color-prim;
+        font-size: 1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.info{
+    &__titre{
+        @include user-titre;
+        font-size: 3rem;
+        text-align: left;
+        margin-bottom: 1rem
+    }
+    &__lieu{
+        @include user-lieu;
+        text-align: left;
+        font-size: 1.7rem;
+        margin-bottom: 1rem
+    }
+    &__para{
+        @include user-para;
+        text-align: left;
+        font-size: 0.9rem;
+        color: $color-para-photographe;
+        margin-bottom: 1.2rem;
+    }
+    &__tag{
+        display: flex;
+        font-size: 18px;
+    }
+}

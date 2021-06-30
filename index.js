@@ -1,83 +1,17 @@
-import * as utils from "./js/utils.js";
+import {recupJSON, dataPhotographes, photographe} from "./js/utils.js";
 
 //Elements du DOM
 const mainConteneur = document.getElementById("main__index");
-utils.test()
+
+// let dataPhotographes =[];
+// let dataMedias = [];
+// let site = "";
 
 let tableauDesTags = [];
 let articles =[];
-let url = window.location.href;
+// let url = window.location.href;
 
-let dataPhotographes =[];
-let dataMedias = [];
-let site = "";
-console.log(url);
-
-const recupJSON = async () => {
-  await fetch("FishEyeData.json")
-    .then((res) => res.json())
-    .then(function(data){
-      dataPhotographes = data.photographers;
-      dataMedias = data.media;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-    console.log(dataPhotographes);
-    // console.log(dataMedias);
-};
-
-// class qui construit les vignettes des photographes.
-class photographe {
-  constructor(photographe) {
-    this.city = photographe.city;
-    this.country = photographe.country;
-    this.id = photographe.id;
-    this.name = photographe.name;
-    this.portrait = photographe.portrait;
-    this.price = photographe.price;
-    this.tagline = photographe.tagline;
-    this.tags = photographe.tags;
-  }
-
-  createPhotographe = function(dom) {
-    dom.innerHTML +=
-    `
-      <article class="user">
-        <a href="./html/${insertPointHtml(this.name)}.${this.id}.html" class="user__lien">
-            <img class="user__img" src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${this.name}">
-            <h2 class=user__titre>${this.name}</h2>
-        </a>
-        <p class="user__lieu">${this.city}, ${this.country}</p>
-        <p class="user__para">${this.tagline}</p>
-        <p class="user__prix">${this.price}€/jour</p>
-        <ul class="user__tag">${this.tags
-          .map((tag) => `<li class="tag ${tag}" aria-label="tag__${tag}"><span class="${tag}">#${tag}</span></li>`)
-          .join("")}</ul>     
-      </article>
-    `; 
-  }
-
-  createPagePhotographe = function(dom) {
-    dom.innerHTML +=
-    `
-    <section id="photographe">
-      <div class="photographe__header">
-        <h1 class="photographe__titre">${this.name}</h1>
-        <p class="photographe__lieu">${this.city}, ${this.country}</p>
-        <p class="photographe__para">${this.tagline}</p>
-        <ul class="photographe__tag">
-        ${this.tags
-          .map((tag) => `<li class="tag ${tag}" aria-label="tag__${tag}"><span class="${tag}">#${tag}</span></li>`)
-          .join("")}
-        </ul>
-      </div>
-      <button class="photographe.contact">Contactez-moi</button>
-      <img src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${this.name}" class="photographe__image">    
-    </section>
-    `
-  }
-};
+// console.log(url);
 
 //Crée la page index grâce aux données JSON
 const creationPhotographe = async () => {
@@ -89,10 +23,11 @@ const creationPhotographe = async () => {
 };
 
 //Permet de lier le nom et prenom ensemble pour l'inserer par la suite dans une url
-function insertPointHtml(nom) {
-  site = nom.split(" ").join("");
-  return site;
-};
+// function insertPointHtml(nom) {
+//   site = nom.split(" ").join("");
+//   return site;
+// };
+
 
 // Récupère les éléments du Dom qui correspondent au tag et les mets dans un tableau
 const triPhotographe = async () => {

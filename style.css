@@ -9,7 +9,6 @@
 body {
   max-width: 1440px;
   margin: auto;
-  display: grid;
 }
 
 a {
@@ -29,6 +28,15 @@ a {
   padding: 0 0.6rem;
   margin: 0 0.1rem;
   align-self: center;
+  cursor: pointer;
+  color: #901C1C;
+}
+.tag:hover {
+  background-color: #901C1C;
+  color: white;
+}
+.tag:hover span:hover {
+  color: white;
 }
 
 .tag span {
@@ -58,7 +66,7 @@ nav {
   text-align: center;
 }
 
-main {
+#main__index {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 458px 458px;
@@ -134,6 +142,62 @@ main {
 #contenu a {
   text-decoration: none;
   color: black;
+}
+
+.photographe {
+  background-color: #FAFAFA;
+  height: 313px;
+  padding: 63px 50px 0 50px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 200px;
+}
+.photographe__image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.photographe__contact {
+  height: 69px;
+  width: 170px;
+  color: white;
+  background-color: #901C1C;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.info__titre {
+  font-size: 2.5rem;
+  color: #D3573C;
+  font-weight: 400;
+  text-align: center;
+  font-size: 3rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.info__lieu {
+  font-size: 0.8rem;
+  color: #901C1C;
+  text-align: center;
+  text-align: left;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+.info__para {
+  font-size: 0.6rem;
+  text-align: center;
+  margin: 0.2rem auto;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #525252;
+  margin-bottom: 1.2rem;
+}
+.info__tag {
+  display: flex;
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=style.css.map */

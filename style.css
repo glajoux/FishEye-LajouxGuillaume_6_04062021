@@ -247,6 +247,11 @@ nav {
   object-fit: cover;
   margin-bottom: 10px;
 }
+.vignette__video {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+}
 .vignette__like {
   display: flex;
 }

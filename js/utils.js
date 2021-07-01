@@ -90,7 +90,7 @@ class mediaVignette {
     this.video = media.video;
   }
 
-  createMedia = function (dom) {
+  createPhoto = function (dom) {
     dom.innerHTML +=
     `
       <article class="vignette">
@@ -104,7 +104,25 @@ class mediaVignette {
 
     `
   }
+
+  createVideo= function (dom) {
+    dom.innerHTML +=
+    `
+      <article class="vignette">
+        <video src="../photos/${this.photographerId}/${this.video}" class="vignette__video">
+        </video>      
+        <p class="vignette__titre">${this.title}</p>
+        <div class="vignette__like">
+          <p class="vignette__like__nbr">${this.likes}</p>    
+          <img src="../photos/coeur.svg" alt="likes" class="vignette__img">
+        </div>        
+      </article>
+    `
+  }
 }
+
+
+
 
 
 export {recupJSON, insertPointHtml, photographe, dataPhotographes, dataMedias, site, mediaVignette};

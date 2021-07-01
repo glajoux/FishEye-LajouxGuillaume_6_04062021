@@ -92,6 +92,11 @@
         object-fit: cover;
         margin-bottom: 10px;
     }
+    &__video{
+        width: 350px;
+        height: 300px;
+        object-fit: cover;
+    }
     &__like{
         display: flex;
         &__nbr{

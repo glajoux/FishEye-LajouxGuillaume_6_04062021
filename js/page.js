@@ -31,8 +31,13 @@ async function pagePhotographe() {
   `
   const section = document.querySelector(".media")
   idMedias.forEach((media) => {
-    let mediaModel = new mediaVignette (media)
-    mediaModel.createMedia(section)
+    if (media.hasOwnProperty("image")) {
+      let photoModel = new mediaVignette (media)
+      photoModel.createPhoto(section)  
+    } else if (media.hasOwnProperty("video")) {
+      let videoModel = new mediaVignette (media)
+      videoModel.createVideo(section)
+    }
   })
 
 };

@@ -2,6 +2,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 458px 458px;
+    @media (max-width : 768px) {
+        grid-template-columns: 1fr;
+    }
+    @media (min-width : 769px) and (max-width : 1239px) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .user{
@@ -18,6 +24,10 @@
     }
     &__titre{
         @include user-titre;
+        @media (max-width : 768px) {
+            font-size: 2.3rem;
+        }
+
     }
     &__lieu{
         @include user-lieu;
@@ -32,6 +42,9 @@
         display: flex;
         cursor: pointer;
         color: $color-prim;
+        @media (max-width : 768px) {
+            flex-wrap: wrap;
+        }
     }
 }
 

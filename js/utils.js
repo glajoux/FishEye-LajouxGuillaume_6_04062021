@@ -89,7 +89,7 @@ class mediaVignette {
     this.title = media.title;
     this.video = media.video;
   }
-
+  // construit une vignette avec une image et l'injecte dans le dom
   createPhoto = function (dom) {
     dom.innerHTML +=
     `
@@ -104,7 +104,7 @@ class mediaVignette {
 
     `
   }
-
+  // construit une vignette avec une vidéo et l'injecte dans le dom
   createVideo= function (dom) {
     dom.innerHTML +=
     `

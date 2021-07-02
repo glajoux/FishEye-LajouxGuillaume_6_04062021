@@ -3,10 +3,6 @@ import {recupJSON, dataPhotographes, photographe} from "./js/utils.js";
 //Elements du DOM
 const mainConteneur = document.getElementById("main__index");
 
-// let dataPhotographes =[];
-// let dataMedias = [];
-// let site = "";
-
 let tableauDesTags = [];
 let articles =[];
 // let url = window.location.href;
@@ -21,13 +17,6 @@ const creationPhotographe = async () => {
     photographeModel.createPhotographe(mainConteneur)
   })
 };
-
-//Permet de lier le nom et prenom ensemble pour l'inserer par la suite dans une url
-// function insertPointHtml(nom) {
-//   site = nom.split(" ").join("");
-//   return site;
-// };
-
 
 // Récupère les éléments du Dom qui correspondent au tag et les mets dans un tableau
 const triPhotographe = async () => {
@@ -65,7 +54,7 @@ const affichageParTag = async() =>{
  });
 };
 
-
+// Au scroll sur la page fait apparaitre  le bloc "passer au contenu"
 window.addEventListener('scroll', function() {
   if(document.documentElement.scrollTop > 100){
     document.getElementById("contenu").style["visibility"] = "visible"

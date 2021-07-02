@@ -8,7 +8,7 @@ let idUrl = parseInt(urlRechercheParams.get("id"));
 
 async function pagePhotographe() {
   await recupJSON();
-  console.log(dataPhotographes);
+  // console.log(dataPhotographes);
   // console.log(dataMedias);
   let idPhotographe = dataPhotographes.filter(el => el.id === idUrl);
   let idMedias = dataMedias.filter(el => el.photographerId === idUrl);
@@ -29,16 +29,30 @@ async function pagePhotographe() {
   <section class="media">
   </section>
   `
+
+  let nbrDeLike = 0;
+
   const section = document.querySelector(".media")
   idMedias.forEach((media) => {
-    if (media.hasOwnProperty("image")) {
+    nbrDeLike += media.likes
+    // vérifie si il y a une clé image ou video dans media
+    if ("image" in media) {
       let photoModel = new mediaVignette (media)
       photoModel.createPhoto(section)  
-    } else if (media.hasOwnProperty("video")) {
+    } else if ("video" in media) {
       let videoModel = new mediaVignette (media)
       videoModel.createVideo(section)
     }
   })
+  const mediaConteneur = document.querySelector(".media");
+  mediaConteneur.innerHTML += 
+  `
+  <div class="tarif">
+    <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="../photos/coeur_noir.svg" alt="likes" class="like__coeur">
+    </p>
+    <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
+  </div>
+  `
 
 };
 

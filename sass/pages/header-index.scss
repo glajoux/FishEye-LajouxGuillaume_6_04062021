@@ -1,13 +1,13 @@
 .nav__ul, header, nav{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 .tag{
     @include tag-box;
     cursor: pointer;
     color: $color-prim;
+    display: flex;
     &:hover{
         background-color: $color-prim;
         color: white;
@@ -18,23 +18,55 @@
         
         }
     }
+    @media (max-width : 768px) {
+        margin-bottom: 5px;
+    }
 }
 
 
 .tag span{
     font-size: 12px;
     font-weight: 500;
+    @media (max-width : 768px) {
+        font-size: 12px;
+    }
+
 }
 
 header{
     margin-top: 2.8rem;
     margin-bottom: 4rem;
+    @media (max-width: 1239px) {
+        flex-wrap: wrap;
+    }
 }
 
 .logo {
     width: 200px;
     text-align: center;
     flex: 1;
+    @media (max-width: 768px) {
+        margin-bottom: 1rem;
+        order: -2;
+        min-width: 40%;
+        &__svg{
+            width: 100px;
+            height: 25px;
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+    @media (min-width: 769px) and (max-width : 1239px) {
+        margin-bottom: 1rem;
+        order: -2;
+        min-width: 50%;
+        &__svg{
+            width: 150px;
+            height: 50px;
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
 }
 
 nav{
@@ -44,7 +76,32 @@ nav{
 .header__titre{
     color: $color-prim;
     font-weight: normal;
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
+    @media (max-width: 768px) {
+        order: -1;
+        min-width: 50%;
+        font-size: 1.2rem;
+        text-align: right;
+        margin-right: 5%;
+    }
+    @media (min-width: 769px) and (max-width : 1239px) {
+        order: -1;
+        min-width: 50%;        
+        }
 }
 
+.nav__ul{
+    @media (max-width : 768px) {
+        flex-wrap: wrap;
+        margin: auto; 
+        justify-content: center;  
+    }
+    @media (min-width: 769px) and (max-width : 1239px) {
+        flex-wrap: wrap;
+        margin: auto; 
+        justify-content: center;  
+
+    }
+
+}

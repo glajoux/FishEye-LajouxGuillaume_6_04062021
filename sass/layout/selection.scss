@@ -1,0 +1,30 @@
+.selection{
+    margin-top: 20px;
+    margin-bottom: 58px;
+        @media (max-width : 768px) {
+            display: none;
+        }   
+        @media (min-width : 769px) and (max-width : 1239px) {
+         padding-left: 20px;   
+        }     
+    &__tri{
+        font-weight: 700;
+        margin-right: 20px;
+    }
+    &__triage{
+        background-color: $color-prim;
+        color: white;
+        border: none;
+        height: 69px;
+        width: 170px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+            background-color: $color-sec;
+            color: black;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+.media{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 95px;
+    @media (max-width : 768px) {
+        display: flex;
+        flex-direction: column;
+    }
+    @media (min-width : 769px) and (max-width : 1239px) {
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        column-gap: 50px;
+    }
+}
+
+.vignette{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 350px;
+    margin-bottom: 30px;
+    @media (max-width : 768px) {
+        min-width: 335px;
+        margin: auto;
+    }
+    @media (min-width : 769px) and (max-width : 1239px) {
+        min-width: 335px;
+        margin: auto;
+    }
+    &__photo{
+        width: 350px;
+        height: 300px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        @media (max-width : 768px) {
+            width: 300px;
+            margin: 10px auto;
+        }    
+        @media (min-width : 769px) and (max-width : 1239px) {
+            width: 300px;
+            margin: auto;
+        }  
+    }
+    &__video{
+        width: 350px;
+        height: 300px;
+        object-fit: cover;
+        @media (max-width : 768px) {
+            width: 300px;
+            margin: 10px auto;
+        }   
+        @media (min-width : 769px) and (max-width : 1239px) {
+            width: 300px;
+            margin: auto;
+        }     
+    }
+    &__like{
+        display: flex;
+        &__nbr{
+            color: $color-prim;
+            font-size: 1.2rem;
+        }
+        @media (max-width : 768px) {
+
+        }   
+        @media (min-width : 769px) and (max-width : 1239px) {
+        }     
+    }
+    &__img{
+        margin-left: 5px;
+    }
+    &__titre{
+        color: $color-prim;
+        font-size: 1.2rem;
+    }
+    @media (max-width : 768px) {
+    }   
+    @media (min-width : 769px) and (max-width : 1239px) {
+    }     
+}

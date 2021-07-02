@@ -1,0 +1,119 @@
+.photographe{
+    background-color: $color-back;
+    height: 313px;
+    width: 1140px;
+    padding: 63px 50px 0 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 200px;
+    @media (max-width : 768px) {
+        background-color: white;
+    }
+    @media (max-width : 1239px) {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        padding: 0;
+        margin: auto;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+    &__image{
+        @include user-img;
+        @media (max-width : 768px) {
+            width: 120px;
+            height: 120px;
+        }
+    }
+    &__contact{
+        height: 69px;
+        width: 170px;
+        color: white;
+        background-color: $color-prim;
+        font-size: 1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+            background-color: $color-sec;
+            color: black;
+        }
+        @media (max-width : 768px) {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 35px;
+        }
+    }
+}
+
+.info{
+    @media (max-width : 768px) {
+        display: flex;
+        flex-direction: column;
+        padding: auto;
+        max-width: 60%;
+    }
+    &__titre{
+        @include user-titre;
+        font-size: 3rem;
+        text-align: left;
+        margin-bottom: 1rem;
+        @media (max-width : 768px) {
+            font-size : 2rem;
+        }
+    }
+    &__lieu{
+        @include user-lieu;
+        text-align: left;
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+        @media (max-width : 768px) {
+            font-size : 1rem;
+        }
+
+    }
+    &__para{
+        @include user-para;
+        text-align: left;
+        font-size: 0.9rem;
+        color: $color-para-photographe;
+        margin-bottom: 1.2rem;
+        @media (max-width : 768px) {
+            font-size : 0.8rem;
+            margin: 0;
+        }
+
+    }
+    &__tag{
+        display: flex;
+        font-size: 18px;
+        @media (max-width : 768px) {
+            flex-wrap: wrap;
+
+        }
+    }
+}
+
+
+
+.tarif{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: $color-ter;
+    color: black;
+    display: flex;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    &__like{
+        padding-right: 3.5rem;
+    }
+    @media (max-width : 768px) {
+        display: none;
+    }
+}
+

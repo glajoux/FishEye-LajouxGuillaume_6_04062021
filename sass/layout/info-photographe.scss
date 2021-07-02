@@ -8,14 +8,15 @@
     @media (max-width : 768px) {
         background-color: white;
     }
-    @media (max-width : 1239px) {
-        display: flex;
+    @media (max-width : 768px) {
         justify-content: space-between;
+    }
+    @media (min-width : 769px) and (max-width : 1239px) {
         width: 90%;
         padding: 0;
         margin: auto;
-        height: auto;
-        margin-bottom: 2rem;
+        height: 313px;
+        padding: 63px 50px 0 50px;
     }
     &__image{
         @include user-img;

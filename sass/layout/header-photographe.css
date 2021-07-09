@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  .header__photographe {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.header__logo {
+  text-align: left;
+}
+@media (max-width: 1239px) {
+  .header__logo__svg {
+    width: 180px;
+    padding-left: 20px;
+  }
+}/*# sourceMappingURL=header-photographe.css.map */

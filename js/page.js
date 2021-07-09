@@ -1,23 +1,31 @@
-import { recupJSON, dataPhotographes, photographe, dataMedias, mediaVignette} from "./utils.js";
+import {
+  recupJSON,
+  dataPhotographes,
+  photographe,
+  dataMedias,
+  mediaVignette,
+} from "./utils.js";
+import { createModale } from "./modal.js";
+import { lightbox } from "./lightbox.js";
 
 const mainPagePhotographe = document.getElementById("main__photographe");
+const mainConteneurPage = document.querySelector(".main__conteneur");
 
 //Récupère l'id dans l'url (?id=...)
 let urlRechercheParams = new URLSearchParams(window.location.search);
-let idUrl = parseInt(urlRechercheParams.get("id")); 
+let idUrl = parseInt(urlRechercheParams.get("id"));
 
 async function pagePhotographe() {
   await recupJSON();
   // console.log(dataPhotographes);
   // console.log(dataMedias);
-  let idPhotographe = dataPhotographes.filter(el => el.id === idUrl);
-  let idMedias = dataMedias.filter(el => el.photographerId === idUrl);
-  // console.log(idPhotographe);
+  let idPhotographe = dataPhotographes.filter((el) => el.id === idUrl);
+  let idMedias = dataMedias.filter((el) => el.photographerId === idUrl);
+  console.log(idPhotographe);
   console.log(idMedias);
-  let page = new photographe (idPhotographe[0])
-  page.createPagePhotographe(mainPagePhotographe)
-  mainPagePhotographe.innerHTML += 
-  `
+  let page = new photographe(idPhotographe[0]);
+  page.createPagePhotographe(mainPagePhotographe);
+  mainPagePhotographe.innerHTML += `
   <div class="selection">
     <label for="tri" class="selection__tri">Trier par</label>
     <select name="triage" id="tri" class="selection__triage">
@@ -28,33 +36,42 @@ async function pagePhotographe() {
   </div>
   <section class="media">
   </section>
-  `
+  `;
 
   let nbrDeLike = 0;
 
-  const section = document.querySelector(".media")
+  const section = document.querySelector(".media");
   idMedias.forEach((media) => {
-    nbrDeLike += media.likes
+    nbrDeLike += media.likes;
     // vérifie si il y a une clé image ou video dans media
     if ("image" in media) {
-      let photoModel = new mediaVignette (media)
-      photoModel.createPhoto(section)  
+      let photoModel = new mediaVignette(media);
+      photoModel.createPhoto(section);
     } else if ("video" in media) {
-      let videoModel = new mediaVignette (media)
-      videoModel.createVideo(section)
+      let videoModel = new mediaVignette(media);
+      videoModel.createVideo(section);
     }
-  })
+  });
   const mediaConteneur = document.querySelector(".media");
-  mediaConteneur.innerHTML += 
-  `
+  mediaConteneur.innerHTML += `
   <div class="tarif">
     <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="../photos/coeur_noir.svg" alt="likes" class="like__coeur">
     </p>
     <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
   </div>
-  `
+  `;
+  createModale(mainPagePhotographe, idPhotographe[0].name);
+  const contactBouton = document.querySelector(".photographe__contact");
+  const modale = document.getElementById("dialog");
+  contactBouton.addEventListener("click", function () {
+    modale.style.visibility = "visible";
+  });
+  const closeBouton = document.querySelector(".box__close");
+  closeBouton.addEventListener("click", function () {
+    modale.style.visibility = "hidden";
+  });
 
-};
+  lightbox.initialisation();
+}
 
-pagePhotographe()
-
+pagePhotographe();

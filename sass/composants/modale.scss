@@ -1,0 +1,96 @@
+#dialog {
+  background-color: rgba(231, 231, 231, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  z-index: 2;
+  @media (max-width: 768px) {
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100vh;
+    transform: translateX(0);
+  }
+}
+
+.box {
+  padding-top: 20px;
+  background-color: $color-ter;
+  width: 100%;
+  top: 5rem;
+  margin: auto;
+  max-width: 669px;
+  position: relative;
+  & label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  &__para {
+    color: $color-modal;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.7rem;
+    width: 90%;
+    margin: auto;
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+  &__titre {
+    font-weight: normal;
+    width: 90%;
+    margin: auto;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  &__input {
+    height: 68px;
+    border-radius: 5px;
+    border: none;
+    font-size: 2rem;
+    padding-left: 5px;
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+      height: 55px;
+    }
+  }
+  &__submit {
+    background-color: $color-prim;
+    border: none;
+    border-radius: 5px;
+    width: 170px;
+    height: 69px;
+    color: white;
+    font-size: 1rem;
+    margin: 26px 0 38px 5%;
+    font-weight: bold;
+  }
+  &__close {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    & svg {
+      @media (max-width: 768px) {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+  &__erreur {
+    color: white;
+    background-color: $color-prim;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-left: 5px;
+    text-align: center;
+  }
+}

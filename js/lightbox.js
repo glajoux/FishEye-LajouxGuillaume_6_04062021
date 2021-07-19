@@ -1,16 +1,21 @@
+//Class qui va faire la lightbox. Prends en parametres l'url des médias,
+// le titre (ou alt) à afficher sous l'image
+// ainsi que l'url du média ouvert dans la lightbox.
 class lightbox {
   static initialisation() {
     // Récupère les éléménts du DOM qui contiennent des images et videos
-    // et les convertie cette nodeList en array
+    // et convertie cette nodeList en array
     const liens = Array.prototype.slice.call(
       document.querySelectorAll("img[src*='.jpg'], video[src*='mp4']")
     );
+    const retirePremiereImage = liens.shift();
+    // console.log(liens);
     const gallerie = liens.map((lien) => lien.getAttribute("src"));
     liens.forEach((lien) => {
       lien.addEventListener("click", function (e) {
         e.preventDefault();
         // console.log(e.currentTarget.getAttribute("src"));
-        // console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
+        console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
         new lightbox(
           e.currentTarget.getAttribute("src"),
           e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
@@ -60,6 +65,7 @@ class lightbox {
   prev(e) {
     e.preventDefault;
     let positionIndex = this.medias.findIndex((media) => media === this.url);
+    console.log(this.medias);
     if (positionIndex === 0) {
       positionIndex = this.medias.length;
     }

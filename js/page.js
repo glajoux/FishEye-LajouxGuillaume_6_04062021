@@ -4,6 +4,7 @@ import {
   photographe,
   dataMedias,
   mediaVignette,
+  likeIncrease,
 } from "./utils.js";
 import { createModale } from "./modal.js";
 import { lightbox } from "./lightbox.js";
@@ -70,6 +71,8 @@ async function pagePhotographe() {
   closeBouton.addEventListener("click", function () {
     modale.style.visibility = "hidden";
   });
+
+  likeIncrease();
 
   lightbox.initialisation();
 }

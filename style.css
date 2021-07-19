@@ -691,7 +691,7 @@ nav {
   opacity: 1;
 }
 .lightbox button {
-  opacity: 0.5;
+  opacity: 0.8;
   transition: 0.3s;
   cursor: pointer;
   text-indent: -30000px;
@@ -711,13 +711,13 @@ nav {
   min-height: 100vh;
 }
 .lightbox__container img {
-  max-width: 1240px;
-  height: auto;
+  max-width: 1050px;
+  max-height: 900px;
   border-radius: 5px;
 }
 .lightbox__container video {
-  max-width: 1240px;
-  height: auto;
+  max-width: 1050px;
+  max-height: 900px;
   border-radius: 5px;
 }
 .lightbox__titre {

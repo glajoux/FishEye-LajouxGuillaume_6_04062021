@@ -76,12 +76,6 @@ class photographe {
   };
 }
 
-//Permet de lier le nom et prenom ensemble pour l'inserer par la suite dans une url
-function insertPointHtml(nom) {
-  site = nom.split(" ").join("");
-  return site;
-}
-
 class mediaVignette {
   constructor(media) {
     this.date = media.date;
@@ -128,12 +122,36 @@ class mediaVignette {
   };
 }
 
+// Gestion des likes
+function likeIncrease() {
+  const likeClic = document.querySelectorAll(".vignette__like");
+  let likeTot = document.querySelector(".like__like");
+
+  likeClic.forEach((clic) => {
+    clic.addEventListener("click", () => {
+      let likeNbr = clic.firstElementChild;
+      clic.classList.toggle("clicked");
+      if (clic.classList.contains("clicked")) {
+        let increase = parseInt(likeNbr.textContent) + 1;
+        likeNbr.innerText = increase;
+        let likeTotIncrease = parseInt(likeTot.textContent) + 1;
+        likeTot.innerText = likeTotIncrease;
+      } else {
+        let decrease = parseInt(likeNbr.textContent) - 1;
+        likeNbr.innerText = decrease;
+        let likeTotDecrease = parseInt(likeTot.textContent) - 1;
+        likeTot.innerText = likeTotDecrease;
+      }
+    });
+  });
+}
+
 export {
   recupJSON,
-  insertPointHtml,
   photographe,
   dataPhotographes,
   dataMedias,
   site,
   mediaVignette,
+  likeIncrease,
 };

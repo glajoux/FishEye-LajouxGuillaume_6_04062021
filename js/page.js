@@ -56,7 +56,7 @@ async function pagePhotographe() {
   const mediaConteneur = document.querySelector(".media");
   mediaConteneur.innerHTML += `
   <div class="tarif">
-    <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="../photos/coeur_noir.svg" alt="likes" class="like__coeur">
+    <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="./photos/coeur_noir.svg" alt="likes" class="like__coeur">
     </p>
     <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
   </div>

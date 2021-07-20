@@ -68,7 +68,7 @@ class photographe {
           </ul>
         </div>
         <button class="photographe__contact">Contactez-moi</button>
-        <img src="../photos/Photographers_ID_Photos/${this.portrait}" alt="${
+        <img src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${
       this.name
     }" class="photographe__image">    
       </section>
@@ -92,12 +92,12 @@ class mediaVignette {
   createPhoto = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <img src="../photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo">
+        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo">
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
           <div class="vignette__like">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="../photos/coeur.svg" alt="likes" class="vignette__img">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img">
           </div> 
         </div>       
       </article>
@@ -108,13 +108,13 @@ class mediaVignette {
   createVideo = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <video src="../photos/${this.photographerId}/${this.video}" class="vignette__video">
+        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video">
         </video>
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
           <div class="vignette__like">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="../photos/coeur.svg" alt="likes" class="vignette__img">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img">
           </div> 
         </div>       
       </article>

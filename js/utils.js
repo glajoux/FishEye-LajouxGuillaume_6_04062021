@@ -1,5 +1,5 @@
 const recupJSON = async () => {
-  await fetch("./FishEyeData.json")
+  await fetch("../FishEyeData.json")
     .then((res) => res.json())
     .then(function (data) {
       dataPhotographes = data.photographers;
@@ -32,7 +32,7 @@ class photographe {
   createPhotographe = function (dom) {
     dom.innerHTML += `
         <article class="user">
-          <a href="./html/photographe.html?id=${this.id}" class="user__lien">
+          <a href="./photographe.html?id=${this.id}" class="user__lien">
               <img class="user__img" src="./photos/Photographers_ID_Photos/${
                 this.portrait
               }" alt="${this.name}">

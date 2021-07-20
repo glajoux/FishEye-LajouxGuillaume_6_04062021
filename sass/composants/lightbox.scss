@@ -9,7 +9,7 @@
   &__next,
   &__prev {
     border: none;
-    background: url(../photos/fleche.svg) center center / 30px 48px no-repeat;
+    background: url(./photos/fleche.svg) center center / 30px 48px no-repeat;
     width: 60px;
     height: 48px;
     position: fixed;
@@ -27,7 +27,7 @@
     border: none;
     width: 42px;
     height: 42px;
-    background: url(../photos/croix-rouge.svg) center center / 42px 42px
+    background: url(./photos/croix-rouge.svg) center center / 42px 42px
       no-repeat;
     position: fixed;
     top: 20px;

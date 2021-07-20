@@ -1,5 +1,5 @@
 const recupJSON = async () => {
-  await fetch("../FishEyeData.json")
+  await fetch("./FishEyeData.json")
     .then((res) => res.json())
     .then(function (data) {
       dataPhotographes = data.photographers;

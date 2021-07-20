@@ -1,5 +1,5 @@
 const recupJSON = async () => {
-  await fetch("../FishEyeData.json")
+  await fetch("./FishEyeData.json")
     .then((res) => res.json())
     .then(function (data) {
       dataPhotographes = data.photographers;
@@ -123,6 +123,8 @@ class mediaVignette {
 }
 
 // Gestion des likes
+// Au clic on ajoute une class si elle n'est pas présente et on ajoute 1 au nbr de like
+// Sinon on retire la class et on enlève 1
 function likeIncrease() {
   const likeClic = document.querySelectorAll(".vignette__like");
   let likeTot = document.querySelector(".like__like");

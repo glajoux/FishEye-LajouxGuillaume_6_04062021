@@ -11,10 +11,16 @@ class lightbox {
     const retirePremiereImage = liens.shift();
     // console.log(liens);
     const gallerie = liens.map((lien) => lien.getAttribute("src"));
+    // console.log(gallerie);
+    const titres = liens.map(
+      (lien) => lien.nextElementSibling.childNodes[1].innerText
+    );
+    console.log(titres);
+
     liens.forEach((lien) => {
       lien.addEventListener("click", function (e) {
         e.preventDefault();
-        // console.log(e.currentTarget.getAttribute("src"));
+        // console.log(e.currentTarget);
         console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
         new lightbox(
           e.currentTarget.getAttribute("src"),
@@ -75,6 +81,7 @@ class lightbox {
   // Méthode qui affiche soit une image soit une video en fonction de l'élément cliqué
   afficheMedia(url, titreAlt) {
     this.url = null;
+    this.titreAlt = null;
     const conteneur = this.element.querySelector(".lightbox__container");
     if (url.indexOf("jpg") > -1) {
       conteneur.innerHTML = `
@@ -82,12 +89,14 @@ class lightbox {
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
+      this.titreAlt = titreAlt;
     } else if (url.indexOf("mp4") > -1) {
       conteneur.innerHTML = `
             <video src="${url}" controls></video>
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
+      this.titreAlt = titreAlt;
     }
   }
 

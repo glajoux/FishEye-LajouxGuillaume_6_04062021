@@ -25,7 +25,8 @@ class lightbox {
         new lightbox(
           e.currentTarget.getAttribute("src"),
           e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
-          gallerie
+          gallerie,
+          titres
         );
       });
     });
@@ -81,7 +82,6 @@ class lightbox {
   // Méthode qui affiche soit une image soit une video en fonction de l'élément cliqué
   afficheMedia(url, titreAlt) {
     this.url = null;
-    this.titreAlt = null;
     const conteneur = this.element.querySelector(".lightbox__container");
     if (url.indexOf("jpg") > -1) {
       conteneur.innerHTML = `
@@ -89,19 +89,17 @@ class lightbox {
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
-      this.titreAlt = titreAlt;
     } else if (url.indexOf("mp4") > -1) {
       conteneur.innerHTML = `
             <video src="${url}" controls></video>
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
-      this.titreAlt = titreAlt;
     }
   }
 
   //Méthode qui va construire le DOM en prenant en paramètre l'url de l'image ou video
-  constructionDom(url, titreAlt) {
+  constructionDom() {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
     dom.innerHTML = `

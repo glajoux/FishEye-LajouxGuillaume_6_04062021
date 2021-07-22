@@ -5,6 +5,7 @@ import {
   dataMedias,
   mediaVignette,
   likeIncrease,
+  tri,
 } from "./utils.js";
 import { createModale } from "./modal.js";
 import { lightbox } from "./lightbox.js";
@@ -20,10 +21,15 @@ async function pagePhotographe() {
   await recupJSON();
   // console.log(dataPhotographes);
   // console.log(dataMedias);
+  // Récupère les info du photographe en fonction de l'id dans l'url
   let idPhotographe = dataPhotographes.filter((el) => el.id === idUrl);
+  // Récupère les médias du photographe en fonction de l'id dans l'url
   let idMedias = dataMedias.filter((el) => el.photographerId === idUrl);
   console.log(idPhotographe);
   console.log(idMedias);
+
+  let titres = [];
+  idMedias.forEach((media) => titres.push(media.title)); //Récupères tout les titres pour être utilisé dnas le tri et lightbox
   let page = new photographe(idPhotographe[0]);
   page.createPagePhotographe(mainPagePhotographe);
   mainPagePhotographe.innerHTML += `
@@ -39,22 +45,38 @@ async function pagePhotographe() {
   </section>
   `;
 
-  let nbrDeLike = 0;
+  let nbrDeLike = 0; //Variable qui sera affiché pour le nbr total de like en bas de page
+  // qui sera incrémenté lors de la création des médias
 
   const section = document.querySelector(".media");
-  idMedias.forEach((media) => {
-    nbrDeLike += media.likes;
-    // vérifie si il y a une clé image ou video dans media
-    if ("image" in media) {
-      let photoModel = new mediaVignette(media);
-      photoModel.createPhoto(section);
-    } else if ("video" in media) {
-      let videoModel = new mediaVignette(media);
-      videoModel.createVideo(section);
-    }
-  });
-  const mediaConteneur = document.querySelector(".media");
-  mediaConteneur.innerHTML += `
+
+  const createMedia = (mediaDuPhotographe, eleDOM, likeDesMedias) => {
+    mediaDuPhotographe.forEach((media) => {
+      likeDesMedias += media.likes;
+      // vérifie si il y a une clé image ou video dans media
+      if ("image" in media) {
+        let photoModel = new mediaVignette(media);
+        photoModel.createPhoto(eleDOM);
+      } else if ("video" in media) {
+        let videoModel = new mediaVignette(media);
+        videoModel.createVideo(eleDOM);
+      }
+    });
+  };
+
+  createMedia(idMedias, section, nbrDeLike);
+  // idMedias.forEach((media) => {
+  //   nbrDeLike += media.likes;
+  //   // vérifie si il y a une clé image ou video dans media
+  //   if ("image" in media) {
+  //     let photoModel = new mediaVignette(media);
+  //     photoModel.createPhoto(section);
+  //   } else if ("video" in media) {
+  //     let videoModel = new mediaVignette(media);
+  //     videoModel.createVideo(section);
+  //   }
+  // });
+  section.innerHTML += `
   <div class="tarif">
     <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="./photos/coeur_noir.svg" alt="likes" class="like__coeur">
     </p>
@@ -73,6 +95,9 @@ async function pagePhotographe() {
   });
 
   likeIncrease();
+
+  tri(idMedias);
+  console.log(idMedias);
 
   lightbox.initialisation();
 }

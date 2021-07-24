@@ -5,7 +5,6 @@ import {
   dataMedias,
   mediaVignette,
   likeIncrease,
-  tri,
 } from "./utils.js";
 import { createModale } from "./modal.js";
 import { lightbox } from "./lightbox.js";
@@ -34,12 +33,13 @@ async function pagePhotographe() {
   page.createPagePhotographe(mainPagePhotographe);
   mainPagePhotographe.innerHTML += `
   <div class="selection">
-    <label for="tri" class="selection__tri">Trier par</label>
+    <label class="selection__tri">Trier par</label>
     <select name="triage" id="tri" class="selection__triage">
       <option value="populaire">Populaire</option>
       <option value="date">Date</option>
       <option value="titre">Titre</option>
     </select>
+    <img src="./photos/fleche_blanche.svg" alt="Fleche d'ouverture du menu" class="selection__fleche">
   </div>
   <section class="media">
   </section>
@@ -50,9 +50,9 @@ async function pagePhotographe() {
 
   const section = document.querySelector(".media");
 
-  const createMedia = (mediaDuPhotographe, eleDOM, likeDesMedias) => {
+  function createMedia(mediaDuPhotographe, eleDOM) {
     mediaDuPhotographe.forEach((media) => {
-      likeDesMedias += media.likes;
+      nbrDeLike += media.likes;
       // vérifie si il y a une clé image ou video dans media
       if ("image" in media) {
         let photoModel = new mediaVignette(media);
@@ -62,20 +62,10 @@ async function pagePhotographe() {
         videoModel.createVideo(eleDOM);
       }
     });
-  };
+  }
 
-  createMedia(idMedias, section, nbrDeLike);
-  // idMedias.forEach((media) => {
-  //   nbrDeLike += media.likes;
-  //   // vérifie si il y a une clé image ou video dans media
-  //   if ("image" in media) {
-  //     let photoModel = new mediaVignette(media);
-  //     photoModel.createPhoto(section);
-  //   } else if ("video" in media) {
-  //     let videoModel = new mediaVignette(media);
-  //     videoModel.createVideo(section);
-  //   }
-  // });
+  createMedia(idMedias, section);
+
   section.innerHTML += `
   <div class="tarif">
     <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="./photos/coeur_noir.svg" alt="likes" class="like__coeur">
@@ -83,6 +73,7 @@ async function pagePhotographe() {
     <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
   </div>
   `;
+
   createModale(mainPagePhotographe, idPhotographe[0].name);
   const contactBouton = document.querySelector(".photographe__contact");
   const modale = document.getElementById("dialog");
@@ -94,10 +85,40 @@ async function pagePhotographe() {
     modale.style.visibility = "hidden";
   });
 
-  likeIncrease();
+  function tri() {
+    const SELECTION = document.querySelectorAll("option");
 
-  tri(idMedias);
-  console.log(idMedias);
+    SELECTION.forEach((select) => {
+      select.addEventListener("click", function (e) {
+        if (e.target.value == "populaire") {
+          idMedias.sort(function (a, b) {
+            return b.likes - a.likes;
+          });
+        } else if (e.target.value == "titre") {
+          idMedias.sort(function (a, b) {
+            if (a.title < b.title) {
+              return -1;
+            } else {
+              return 1;
+            }
+          });
+        } else if (e.target.value == "date") {
+          idMedias.sort(function (a, b) {
+            let c = new Date(a.date);
+            let d = new Date(b.date);
+            return d - c;
+          });
+        }
+        console.log(idMedias);
+        section.innerHTML = "";
+        createMedia(idMedias, section);
+      });
+    });
+  }
+
+  tri();
+
+  likeIncrease();
 
   lightbox.initialisation();
 }

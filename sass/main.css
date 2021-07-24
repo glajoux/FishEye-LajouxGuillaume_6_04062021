@@ -177,7 +177,7 @@ nav {
   height: 200px;
   border-radius: 50%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .user__titre {
   font-size: 2.5rem;
@@ -298,7 +298,7 @@ nav {
   height: 200px;
   border-radius: 50%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media (max-width: 768px) {
   .photographe__image {
@@ -456,7 +456,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   -moz-column-gap: 95px;
-       column-gap: 95px;
+  column-gap: 95px;
 }
 @media (max-width: 768px) {
   .media {
@@ -469,7 +469,7 @@ nav {
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     -moz-column-gap: 50px;
-         column-gap: 50px;
+    column-gap: 50px;
   }
 }
 
@@ -496,7 +496,7 @@ nav {
   width: 350px;
   height: 300px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin-bottom: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -517,7 +517,7 @@ nav {
   width: 350px;
   height: 300px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -681,4 +681,4 @@ nav {
   z-index: 11;
   opacity: 0.5;
   text-indent: -3000px;
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */

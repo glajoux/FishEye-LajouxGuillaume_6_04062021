@@ -418,6 +418,7 @@ nav {
 .selection {
   margin-top: 20px;
   margin-bottom: 58px;
+  position: relative;
 }
 @media (max-width: 768px) {
   .selection {
@@ -435,6 +436,7 @@ nav {
 }
 .selection__triage {
   background-color: #901c1c;
+  appearance: none;
   color: white;
   border: none;
   height: 69px;
@@ -448,6 +450,12 @@ nav {
 .selection__triage:hover {
   background-color: #d3573c;
   color: black;
+}
+.selection__fleche {
+  position: absolute;
+  left: 19%;
+  top: 42%;
+  cursor: pointer;
 }
 
 .media {
@@ -658,7 +666,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(255, 255, 255, 0.95);
   z-index: 10;
 }
@@ -672,6 +680,18 @@ nav {
   right: 0;
   margin-top: -48px;
   z-index: 11;
+}
+@media (max-width: 768px) {
+  .lightbox__next, .lightbox__prev {
+    width: 30px;
+    height: 24px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1239px) {
+  .lightbox__next, .lightbox__prev {
+    width: 40px;
+    height: 32px;
+  }
 }
 .lightbox__prev {
   right: auto;
@@ -690,6 +710,18 @@ nav {
 .lightbox__close:hover {
   opacity: 1;
 }
+@media (max-width: 768px) {
+  .lightbox__close {
+    width: 21px;
+    height: 21px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1239px) {
+  .lightbox__close {
+    width: 21px;
+    height: 21px;
+  }
+}
 .lightbox button {
   opacity: 0.8;
   transition: 0.3s;
@@ -702,23 +734,34 @@ nav {
 }
 .lightbox__container {
   margin: auto;
-  margin-top: 100px;
+  box-sizing: border-box;
+  margin-top: 5%;
   max-width: 1240px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
 }
 .lightbox__container img {
-  max-width: 1050px;
-  max-height: 900px;
+  max-width: 85%;
+  max-height: 85%;
   border-radius: 5px;
 }
 .lightbox__container video {
-  max-width: 1050px;
-  max-height: 900px;
+  max-width: 85%;
+  max-height: 85%;
   border-radius: 5px;
+}
+@media (min-width: 769px) and (max-width: 1239px) {
+  .lightbox__container {
+    max-width: 1239px;
+  }
+}
+@media (max-width: 768px) {
+  .lightbox__container {
+    max-width: 768px;
+  }
 }
 .lightbox__titre {
   color: #901c1c;

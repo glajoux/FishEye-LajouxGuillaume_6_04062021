@@ -148,29 +148,6 @@ function likeIncrease() {
   });
 }
 
-function tri(medias) {
-  const SELECTION = document.querySelectorAll("option");
-
-  SELECTION.forEach((select) => {
-    select.addEventListener("click", function (e) {
-      if (e.target.value == "populaire") {
-        medias.sort(function (a, b) {
-          return a.likes - b.likes;
-        });
-      } else if (e.target.value == "titre") {
-        medias.sort(function (a, b) {
-          return a.title - b.title;
-        });
-      } else if (e.target.value == "date") {
-        medias.sort(function (a, b) {
-          return a.date - b.date;
-        });
-      }
-      console.log(medias);
-    });
-  });
-}
-
 export {
   recupJSON,
   photographe,
@@ -179,5 +156,4 @@ export {
   site,
   mediaVignette,
   likeIncrease,
-  tri,
 };

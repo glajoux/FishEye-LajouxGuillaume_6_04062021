@@ -9,9 +9,10 @@ class lightbox {
       document.querySelectorAll("img[src*='.jpg'], video[src*='mp4']")
     );
     const retirePremiereImage = liens.shift();
-    // console.log(liens);
+    console.log(liens);
+
     const gallerie = liens.map((lien) => lien.getAttribute("src"));
-    // console.log(gallerie);
+    console.log(gallerie);
     const titres = liens.map(
       (lien) => lien.nextElementSibling.childNodes[1].innerText
     );
@@ -32,9 +33,14 @@ class lightbox {
     });
   }
 
-  constructor(url, titreAlt, medias) {
+  /*
+   *Prends en param l'url de l'image, le titre de l'image,
+   *un tableau avec les chemins des images images et un tableau avec les titres
+   */
+  constructor(url, titreAlt, medias, infos) {
     this.element = this.constructionDom(url);
     this.medias = medias;
+    this.infos = infos;
     this.appuieClavier = this.appuieClavier.bind(this);
     this.afficheMedia(url, titreAlt);
     document.body.appendChild(this.element);
@@ -62,26 +68,37 @@ class lightbox {
   next(e) {
     e.preventDefault;
     let positionIndex = this.medias.findIndex((media) => media === this.url);
+    let positionInfo = this.infos.findIndex((info) => info === this.titreAlt);
     if (positionIndex === this.medias.length - 1) {
       positionIndex = -1;
+      positionInfo = -1;
     }
-    this.afficheMedia(this.medias[positionIndex + 1]);
+    this.afficheMedia(
+      this.medias[positionIndex + 1],
+      this.infos[positionInfo + 1]
+    );
   }
 
   // Méthode qui gère le bouton prev et affiche l'image precédente
   prev(e) {
     e.preventDefault;
     let positionIndex = this.medias.findIndex((media) => media === this.url);
-    console.log(this.medias);
+    let positionInfo = this.infos.findIndex((info) => info === this.titreAlt);
+
     if (positionIndex === 0) {
       positionIndex = this.medias.length;
+      positionInfo = this.infos.length;
     }
-    this.afficheMedia(this.medias[positionIndex - 1]);
+    this.afficheMedia(
+      this.medias[positionIndex - 1],
+      this.infos[positionInfo - 1]
+    );
   }
 
   // Méthode qui affiche soit une image soit une video en fonction de l'élément cliqué
   afficheMedia(url, titreAlt) {
     this.url = null;
+    this.titreAlt = null;
     const conteneur = this.element.querySelector(".lightbox__container");
     if (url.indexOf("jpg") > -1) {
       conteneur.innerHTML = `
@@ -89,12 +106,14 @@ class lightbox {
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
+      this.titreAlt = titreAlt;
     } else if (url.indexOf("mp4") > -1) {
       conteneur.innerHTML = `
             <video src="${url}" controls></video>
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;
+      this.titreAlt = titreAlt;
     }
   }
 

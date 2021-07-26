@@ -419,6 +419,7 @@ nav {
   margin-top: 20px;
   margin-bottom: 58px;
   position: relative;
+  width: 280px;
 }
 @media (max-width: 768px) {
   .selection {
@@ -427,7 +428,7 @@ nav {
 }
 @media (min-width: 769px) and (max-width: 1239px) {
   .selection {
-    padding-left: 20px;
+    margin-left: 20px;
   }
 }
 .selection__tri {
@@ -453,7 +454,7 @@ nav {
 }
 .selection__fleche {
   position: absolute;
-  left: 19%;
+  right: 15%;
   top: 42%;
   cursor: pointer;
 }

@@ -111,8 +111,8 @@ async function pagePhotographe() {
         }
         console.log(idMedias);
         section.innerHTML = "";
-        createMedia(idMedias, section);
       });
+      createMedia(idMedias, section);
     });
   }
 

@@ -21,14 +21,14 @@ const creationPhotographe = async () => {
 // Récupère les éléments du Dom qui correspondent au tag et les mets dans un tableau
 const triPhotographe = async () => {
   await creationPhotographe();
-  let portrait = document.querySelectorAll(".portrait");
-  let art = document.querySelectorAll(".art");
-  let fashion = document.querySelectorAll(".fashion");
-  let architecture = document.querySelectorAll(".architecture");
-  let travel = document.querySelectorAll(".travel");
-  let sport = document.querySelectorAll(".sports");
-  let animals = document.querySelectorAll(".animals");
-  let events = document.querySelectorAll(".events");
+  let portrait = document.querySelectorAll("li[class*='portrait']");
+  let art = document.querySelectorAll("li[class*='art'");
+  let fashion = document.querySelectorAll("li[class*='fashion'");
+  let architecture = document.querySelectorAll("li[class*='architecture'");
+  let travel = document.querySelectorAll("li[class*='travel'");
+  let sport = document.querySelectorAll("li[class*='sports'");
+  let animals = document.querySelectorAll("li[class*='animals'");
+  let events = document.querySelectorAll("li[class*='events'");
   articles = document.querySelectorAll(".user");
   tableauDesTags = [
     portrait,
@@ -45,22 +45,26 @@ const triPhotographe = async () => {
 //Permet lors d'un clic sur un tag d'afficher seuelement les photographes ayant le même tag
 const affichageParTag = async () => {
   await triPhotographe();
-  tableauDesTags.forEach((tag) => {
-    tag.forEach((noeud) => {
+  console.log(tableauDesTags);
+  console.log(articles);
+  tableauDesTags.forEach((tags) => {
+    tags.forEach((noeud) => {
+      console.log(noeud);
       noeud.addEventListener("click", function (e) {
+        noeud.classList.remove("actif");
         e.stopPropagation();
         console.log(e.target);
-        let tagActif = e.target.parentElement;
         let tagClass = e.target.className;
-        console.log(tagActif);
+        console.log(tags);
         articles.forEach((article) => {
           let testTag = article.innerHTML;
           if (!testTag.includes(tagClass)) {
             article.classList.add("supprime");
-            // tagActif.classList.remove("actif");
           } else {
             article.classList.remove("supprime");
-            // tagActif.classList.add("actif");
+            tags.forEach((tag) => {
+              tag.classList.add("actif");
+            });
           }
         });
       });

@@ -8,5 +8,8 @@
     "prefix": "postcss ./style.css --use autoprefixer -d ./prefixed"
   },
   "author": "Guillaume LAJOUX",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.31.0"
+  }
 }

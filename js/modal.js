@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 let resPrenom = "";
 let resNom = "";
 let resEmail = "";
@@ -27,7 +28,7 @@ const createModale = (dom, photographe) => {
       <form action="" method="post">
         <p class="box__para">
           <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom" class="box__input prenom" />
+          <input type="text" id="prenom" name="prenom" class="box__input prenom" autofocus/>
           <span class="box__erreur erreur__prenom"></span>
         </p>
         <p class="box__para">
@@ -55,7 +56,7 @@ const createModale = (dom, photographe) => {
           <button type="submit" class="box__submit">Envoyer</button>
         </p>
       </form>
-      <button type="button" arial-label="close contact me" class="box__close">
+      <button type="button" arial-label="close contact me" class="box__close" tabindex="1">
         <svg
           width="42"
           height="42"

@@ -10,6 +10,7 @@ class lightbox {
     );
     const retirePremiereImage = liens.shift();
     console.log(liens);
+    console.log(retirePremiereImage);
 
     const gallerie = liens.map((lien) => lien.getAttribute("src"));
     console.log(gallerie);

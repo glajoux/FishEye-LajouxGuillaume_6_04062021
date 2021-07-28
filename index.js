@@ -49,9 +49,12 @@ const affichageParTag = async () => {
   console.log(articles);
   tableauDesTags.forEach((tags) => {
     tags.forEach((noeud) => {
-      console.log(noeud);
       noeud.addEventListener("click", function (e) {
-        noeud.classList.remove("actif");
+        tableauDesTags.forEach((tags) => {
+          tags.forEach((noeud) => {
+            noeud.classList.remove("actif");
+          });
+        });
         e.stopPropagation();
         console.log(e.target);
         let tagClass = e.target.className;

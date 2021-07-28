@@ -44,7 +44,7 @@ class photographe {
           <ul class="user__tag">${this.tags
             .map(
               (tag) =>
-                `<li class="tag ${tag}" aria-label="tag__${tag}"><span class="${tag}">#${tag}</span></li>`
+                `<li class="tag ${tag}" aria-label="tag__${tag}" tabindex="0"><span class="${tag}">#${tag}</span></li>`
             )
             .join("")}</ul>     
         </article>
@@ -67,7 +67,8 @@ class photographe {
             .join("")}
           </ul>
         </div>
-        <button class="photographe__contact">Contactez-moi</button>
+        <button class="photographe__contact" type="button" aria-labeldby="Ouvre le formulaire de contact
+        ">Contactez-moi</button>
         <img src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${
       this.name
     }" class="photographe__image">    
@@ -92,12 +93,13 @@ class mediaVignette {
   createPhoto = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo">
+        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo"
+        tabindex="0">
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
           <div class="vignette__like">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="./photos/coeur.svg" alt="likes" class="vignette__img">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img" tabindex="0">
           </div> 
         </div>       
       </article>
@@ -108,13 +110,14 @@ class mediaVignette {
   createVideo = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video">
+        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video"
+        tabindex="0">
         </video>
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
           <div class="vignette__like">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="./photos/coeur.svg" alt="likes" class="vignette__img">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img" tabindex="0">
           </div> 
         </div>       
       </article>

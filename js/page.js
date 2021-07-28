@@ -10,16 +10,18 @@ import { createModale } from "./modal.js";
 import { lightbox } from "./lightbox.js";
 
 const mainPagePhotographe = document.getElementById("main__photographe");
-const mainConteneurPage = document.querySelector(".main__conteneur");
 
 //Récupère l'id dans l'url (?id=...)
 let urlRechercheParams = new URLSearchParams(window.location.search);
 let idUrl = parseInt(urlRechercheParams.get("id"));
+let nbrDeLike = 0; //Variable qui sera affiché pour le nbr total de like en bas de page
+// qui sera incrémenté lors de la création des médias
 
 async function pagePhotographe() {
   await recupJSON();
   // console.log(dataPhotographes);
   // console.log(dataMedias);
+
   // Récupère les info du photographe en fonction de l'id dans l'url
   let idPhotographe = dataPhotographes.filter((el) => el.id === idUrl);
   // Récupère les médias du photographe en fonction de l'id dans l'url
@@ -34,7 +36,7 @@ async function pagePhotographe() {
   mainPagePhotographe.innerHTML += `
   <div class="selection">
     <label class="selection__tri">Trier par</label>
-    <select name="triage" id="tri" class="selection__triage">
+    <select name="triage" id="tri" class="selection__triage" tabindex="0">
       <option value="populaire">Populaire</option>
       <option value="date">Date</option>
       <option value="titre">Titre</option>
@@ -44,9 +46,6 @@ async function pagePhotographe() {
   <section class="media">
   </section>
   `;
-
-  let nbrDeLike = 0; //Variable qui sera affiché pour le nbr total de like en bas de page
-  // qui sera incrémenté lors de la création des médias
 
   const section = document.querySelector(".media");
 
@@ -80,9 +79,16 @@ async function pagePhotographe() {
   contactBouton.addEventListener("click", function () {
     modale.style.visibility = "visible";
   });
+
   const closeBouton = document.querySelector(".box__close");
   closeBouton.addEventListener("click", function () {
     modale.style.visibility = "hidden";
+  });
+
+  document.addEventListener("keyup", function (e) {
+    if (e.key === "Escape") {
+      modale.style.visibility = "hidden";
+    }
   });
 
   function tri() {

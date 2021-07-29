@@ -1,8 +1,10 @@
 .selection {
   margin-top: 20px;
   margin-bottom: 58px;
+  display: flex;
   position: relative;
   width: 280px;
+  height: 69px;
   @media (max-width: 768px) {
     display: none;
   }
@@ -12,10 +14,38 @@
   &__tri {
     font-weight: 700;
     margin-right: 20px;
+    white-space: nowrap;
+    align-self: center;
+  }
+  &__date {
+    &::after {
+      content: "";
+      background-color: white;
+      position: absolute;
+      height: 1px;
+      width: 85%;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto 0 auto;
+    }
+    &::before {
+      content: "";
+      background-color: white;
+      position: absolute;
+      height: 1px;
+      width: 85%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto 0 auto;
+    }
   }
   &__triage {
+    position: absolute;
+    left: 30%;
     background-color: $color-prim;
-    appearance: none;
     color: white;
     border: none;
     height: 69px;
@@ -23,8 +53,11 @@
     border-radius: 5px;
     font-weight: 700;
     font-size: 1rem;
-    text-align: center;
     cursor: pointer;
+    &__affichage {
+      position: relative;
+      left: 0;
+    }
     &:hover {
       background-color: $color-sec;
       color: black;
@@ -33,7 +66,11 @@
   &__fleche {
     position: absolute;
     right: 15%;
-    top: 42%;
+    top: 43%;
+    z-index: 10;
     cursor: pointer;
+    &__rotate {
+      transform: rotate(180deg);
+    }
   }
 }

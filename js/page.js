@@ -35,13 +35,13 @@ async function pagePhotographe() {
   page.createPagePhotographe(mainPagePhotographe);
   mainPagePhotographe.innerHTML += `
   <div class="selection">
-    <label class="selection__tri">Trier par</label>
-    <select name="triage" id="tri" class="selection__triage" tabindex="0">
-      <option value="populaire">Populaire</option>
-      <option value="date">Date</option>
-      <option value="titre">Titre</option>
-    </select>
-    <img src="./photos/fleche_blanche.svg" alt="Fleche d'ouverture du menu" class="selection__fleche">
+    <div class="selection__tri">Trier par</div>
+    <div class="selection__conteneur">
+      <button class="selection__triage selection__populaire" tabindex="0">Populaire</button>
+      <button class="selection__triage selection__date" tabindex="0">Date</button>
+      <button class="selection__triage selection__titre" tabindex="0">Titre</button>
+      <img src="./photos/fleche_blanche.svg" alt="Fleche d'ouverture du menu" class="selection__fleche">
+    </div>
   </div>
   <section class="media">
   </section>
@@ -91,38 +91,46 @@ async function pagePhotographe() {
     }
   });
 
-  function tri() {
-    const SELECTION = document.querySelectorAll("option");
+  const boutonSelection = document.querySelectorAll(".selection__triage");
+  const flecheSelection = document.querySelector(".selection__fleche");
 
-    SELECTION.forEach((select) => {
-      select.addEventListener("click", function (e) {
-        if (e.target.value == "populaire") {
-          idMedias.sort(function (a, b) {
-            return b.likes - a.likes;
-          });
-        } else if (e.target.value == "titre") {
-          idMedias.sort(function (a, b) {
-            if (a.title < b.title) {
-              return -1;
-            } else {
-              return 1;
-            }
-          });
-        } else if (e.target.value == "date") {
-          idMedias.sort(function (a, b) {
-            let c = new Date(a.date);
-            let d = new Date(b.date);
-            return d - c;
-          });
-        }
-        console.log(idMedias);
-        section.innerHTML = "";
+  boutonSelection.forEach((bouton) => {
+    bouton.addEventListener("click", function (e) {
+      flecheSelection.classList.toggle("selection__fleche__rotate");
+      boutonSelection.forEach((bouton) => {
+        bouton.classList.toggle("selection__triage__affichage");
+        bouton.style.zIndex = "1";
       });
+      bouton.style.zIndex = "2";
+      section.innerHTML = "";
+      tri(e);
       createMedia(idMedias, section);
+      console.log(idMedias);
     });
-  }
+  });
 
-  tri();
+  function tri(elementClicked) {
+    if (elementClicked.target.textContent == "populaire") {
+      alert("test");
+      idMedias.sort(function (a, b) {
+        return b.likes - a.likes;
+      });
+    } else if (elementClicked.target.textContent == "titre") {
+      idMedias.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    } else if (elementClicked.target.textContent == "date") {
+      idMedias.sort(function (a, b) {
+        let c = new Date(a.date);
+        let d = new Date(b.date);
+        return d - c;
+      });
+    }
+  }
 
   likeIncrease();
 

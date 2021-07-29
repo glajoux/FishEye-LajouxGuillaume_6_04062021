@@ -75,6 +75,28 @@ const affichageParTag = async () => {
   });
 };
 
+window.addEventListener("keyup", function (e) {
+  console.log(e);
+  if (e.target.classList.contains("tag") && e.key === "Enter") {
+    tableauDesTags.forEach((tags) => {
+      tags.forEach((noeud) => {
+        noeud.classList.remove("actif");
+      });
+    });
+
+    let tagClass = e.target.className;
+    console.log(tagClass);
+    articles.forEach((article) => {
+      let testTag = article.innerHTML;
+      if (!testTag.includes(tagClass)) {
+        article.classList.add("supprime");
+      } else {
+        article.classList.remove("supprime");
+      }
+    });
+  }
+});
+
 // Au scroll sur la page fait apparaitre  le bloc "passer au contenu"
 window.addEventListener("scroll", function () {
   if (document.documentElement.scrollTop > 100) {

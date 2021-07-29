@@ -423,8 +423,10 @@ nav {
 .selection {
   margin-top: 20px;
   margin-bottom: 58px;
+  display: flex;
   position: relative;
   width: 280px;
+  height: 69px;
 }
 @media (max-width: 768px) {
   .selection {
@@ -439,10 +441,36 @@ nav {
 .selection__tri {
   font-weight: 700;
   margin-right: 20px;
+  white-space: nowrap;
+  align-self: center;
+}
+.selection__date::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  height: 1px;
+  width: 85%;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto 0 auto;
+}
+.selection__date::before {
+  content: "";
+  background-color: white;
+  position: absolute;
+  height: 1px;
+  width: 85%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto 0 auto;
 }
 .selection__triage {
+  position: absolute;
+  left: 30%;
   background-color: #901c1c;
-  appearance: none;
   color: white;
   border: none;
   height: 69px;
@@ -450,8 +478,11 @@ nav {
   border-radius: 5px;
   font-weight: 700;
   font-size: 1rem;
-  text-align: center;
   cursor: pointer;
+}
+.selection__triage__affichage {
+  position: relative;
+  left: 0;
 }
 .selection__triage:hover {
   background-color: #d3573c;
@@ -460,8 +491,12 @@ nav {
 .selection__fleche {
   position: absolute;
   right: 15%;
-  top: 42%;
+  top: 43%;
+  z-index: 10;
   cursor: pointer;
+}
+.selection__fleche__rotate {
+  transform: rotate(180deg);
 }
 
 .media {

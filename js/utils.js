@@ -1,3 +1,5 @@
+import { lightbox } from "./lightbox.js";
+
 const recupJSON = async () => {
   await fetch("./FishEyeData.json")
     .then((res) => res.json())
@@ -62,7 +64,7 @@ class photographe {
           ${this.tags
             .map(
               (tag) =>
-                `<li class="tag ${tag}" aria-label="tag__${tag}"><span class="${tag}">#${tag}</span></li>`
+                `<li class="tag ${tag}" aria-label="tag__${tag}"><span class="${tag}">#${tag}</span></a></li>`
             )
             .join("")}
           </ul>
@@ -93,13 +95,13 @@ class mediaVignette {
   createPhoto = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo"
+        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo media"
         tabindex="0">
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
-          <div class="vignette__like">
+          <div class="vignette__like" tabindex="0">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="./photos/coeur.svg" alt="likes" class="vignette__img" tabindex="0">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img like">
           </div> 
         </div>       
       </article>
@@ -110,14 +112,14 @@ class mediaVignette {
   createVideo = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video"
+        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video media"
         tabindex="0">
         </video>
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
-          <div class="vignette__like">
+          <div class="vignette__like" tabindex="0">
             <p class="vignette__like__nbr">${this.likes}</p>    
-            <img src="./photos/coeur.svg" alt="likes" class="vignette__img" tabindex="0">
+            <img src="./photos/coeur.svg" alt="likes" class="vignette__img like">
           </div> 
         </div>       
       </article>
@@ -128,26 +130,52 @@ class mediaVignette {
 // Gestion des likes
 // Au clic on ajoute une class si elle n'est pas présente et on ajoute 1 au nbr de like
 // Sinon on retire la class et on enlève 1
-function likeIncrease() {
-  const likeClic = document.querySelectorAll(".vignette__like");
-  let likeTot = document.querySelector(".like__like");
+function likeIncrease(clic, likeTot) {
+  let likeNbr = clic.firstElementChild;
+  clic.classList.toggle("clicked");
+  if (clic.classList.contains("clicked")) {
+    let increase = parseInt(likeNbr.textContent) + 1;
+    likeNbr.innerText = increase;
+    let likeTotIncrease = parseInt(likeTot.textContent) + 1;
+    likeTot.innerText = likeTotIncrease;
+  } else {
+    let decrease = parseInt(likeNbr.textContent) - 1;
+    likeNbr.innerText = decrease;
+    let likeTotDecrease = parseInt(likeTot.textContent) - 1;
+    likeTot.innerText = likeTotDecrease;
+  }
+}
 
-  likeClic.forEach((clic) => {
-    clic.addEventListener("click", () => {
-      let likeNbr = clic.firstElementChild;
-      clic.classList.toggle("clicked");
-      if (clic.classList.contains("clicked")) {
-        let increase = parseInt(likeNbr.textContent) + 1;
-        likeNbr.innerText = increase;
-        let likeTotIncrease = parseInt(likeTot.textContent) + 1;
-        likeTot.innerText = likeTotIncrease;
+//Fonction qui va trier les différents lédia suivant leurs titres, likes ou date
+function tri(elementClicked, lesMedias) {
+  if (elementClicked.target.textContent == "Populaire") {
+    lesMedias.sort(function (a, b) {
+      return b.likes - a.likes;
+    });
+  } else if (elementClicked.target.textContent == "Titre") {
+    lesMedias.sort(function (a, b) {
+      if (a.title < b.title) {
+        return -1;
       } else {
-        let decrease = parseInt(likeNbr.textContent) - 1;
-        likeNbr.innerText = decrease;
-        let likeTotDecrease = parseInt(likeTot.textContent) - 1;
-        likeTot.innerText = likeTotDecrease;
+        return 1;
       }
     });
+  } else if (elementClicked.target.textContent == "Date") {
+    lesMedias.sort(function (a, b) {
+      let c = new Date(a.date);
+      let d = new Date(b.date);
+      return d - c;
+    });
+  }
+}
+
+function navigationClavier(likeTot) {
+  window.addEventListener("keyup", function (e) {
+    if (e.target.classList.contains("vignette__like") && e.key === "Enter") {
+      likeIncrease(e.target, likeTot);
+    } else if (e.target.classList.contains("media") && e.key === "Enter") {
+      lightbox.initialisation();
+    }
   });
 }
 
@@ -158,5 +186,7 @@ export {
   dataMedias,
   site,
   mediaVignette,
+  tri,
   likeIncrease,
+  navigationClavier,
 };

@@ -4,7 +4,9 @@ import {
   photographe,
   dataMedias,
   mediaVignette,
+  tri,
   likeIncrease,
+  navigationClavier,
 } from "./utils.js";
 import { createModale } from "./modal.js";
 import { lightbox } from "./lightbox.js";
@@ -13,7 +15,7 @@ const mainPagePhotographe = document.getElementById("main__photographe");
 
 //Récupère l'id dans l'url (?id=...)
 let urlRechercheParams = new URLSearchParams(window.location.search);
-let idUrl = parseInt(urlRechercheParams.get("id"));
+let idUrl = parseInt(urlRechercheParams.get("id")); //Renvoie un entier ID
 let nbrDeLike = 0; //Variable qui sera affiché pour le nbr total de like en bas de page
 // qui sera incrémenté lors de la création des médias
 
@@ -37,9 +39,9 @@ async function pagePhotographe() {
   <div class="selection">
     <div class="selection__tri">Trier par</div>
     <div class="selection__conteneur">
-      <button class="selection__triage selection__populaire" tabindex="0">Populaire</button>
-      <button class="selection__triage selection__date" tabindex="0">Date</button>
-      <button class="selection__triage selection__titre" tabindex="0">Titre</button>
+      <button class="selection__triage" tabindex="0">Populaire</button>
+      <button class="selection__triage" tabindex="0">Date</button>
+      <button class="selection__triage" tabindex="0">Titre</button>
       <img src="./photos/fleche_blanche.svg" alt="Fleche d'ouverture du menu" class="selection__fleche">
     </div>
   </div>
@@ -48,6 +50,7 @@ async function pagePhotographe() {
   `;
 
   const section = document.querySelector(".media");
+  console.log(section);
 
   function createMedia(mediaDuPhotographe, eleDOM) {
     mediaDuPhotographe.forEach((media) => {
@@ -72,7 +75,6 @@ async function pagePhotographe() {
     <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
   </div>
   `;
-
   createModale(mainPagePhotographe, idPhotographe[0].name);
   const contactBouton = document.querySelector(".photographe__contact");
   const modale = document.getElementById("dialog");
@@ -98,41 +100,33 @@ async function pagePhotographe() {
     bouton.addEventListener("click", function (e) {
       flecheSelection.classList.toggle("selection__fleche__rotate");
       boutonSelection.forEach((bouton) => {
+        if (bouton.textContent == "Date") {
+          bouton.classList.toggle("selection__date");
+        }
         bouton.classList.toggle("selection__triage__affichage");
         bouton.style.zIndex = "1";
       });
       bouton.style.zIndex = "2";
-      section.innerHTML = "";
-      tri(e);
-      createMedia(idMedias, section);
+      tri(e, idMedias);
       console.log(idMedias);
+      document.querySelector(".media").innerHTML = "";
+      console.log((document.querySelector(".media").innerHTML = ""));
+
+      createMedia(idMedias, document.querySelector(".media"));
     });
   });
 
-  function tri(elementClicked) {
-    if (elementClicked.target.textContent == "populaire") {
-      alert("test");
-      idMedias.sort(function (a, b) {
-        return b.likes - a.likes;
-      });
-    } else if (elementClicked.target.textContent == "titre") {
-      idMedias.sort(function (a, b) {
-        if (a.title < b.title) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-    } else if (elementClicked.target.textContent == "date") {
-      idMedias.sort(function (a, b) {
-        let c = new Date(a.date);
-        let d = new Date(b.date);
-        return d - c;
-      });
-    }
-  }
+  const likeClic = document.querySelectorAll(".vignette__like");
+  let likeTot = document.querySelector(".like__like");
 
-  likeIncrease();
+  likeClic.forEach((coeur) => {
+    coeur.addEventListener("click", function () {
+      console.log(coeur);
+      likeIncrease(coeur, likeTot);
+    });
+  });
+
+  navigationClavier(likeTot);
 
   lightbox.initialisation();
 }

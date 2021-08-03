@@ -32,6 +32,21 @@ class lightbox {
         );
       });
     });
+    liens.forEach((lien) => {
+      lien.addEventListener("keyup", function (e) {
+        e.preventDefault();
+        console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
+
+        if (e.key === "Enter") {
+          new lightbox(
+            e.currentTarget.getAttribute("src"),
+            e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
+            gallerie,
+            titres
+          );
+        }
+      });
+    });
   }
 
   /*

@@ -70,15 +70,8 @@ async function pagePhotographe() {
   // createMedia(idMedias, section);
 
   const createMedia = new fabriqueMediaVignette();
-  createMedia.fabrique(idMedias, section, nbrDeLike);
+  createMedia.fabrique(idMedias, section, nbrDeLike, idPhotographe[0].price);
 
-  section.innerHTML += `
-  <div class="tarif">
-    <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="./photos/coeur_noir.svg" alt="likes" class="like__coeur">
-    </p>
-    <p class="tarif__prix">${idPhotographe[0].price}€ / jour</p>
-  </div>
-  `;
   createModale(mainPagePhotographe, idPhotographe[0].name);
   const contactBouton = document.querySelector(".photographe__contact");
   const modale = document.getElementById("dialog");

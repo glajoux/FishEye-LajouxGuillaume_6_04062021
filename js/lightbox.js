@@ -125,7 +125,7 @@ class lightbox {
       this.titreAlt = titreAlt;
     } else if (url.indexOf("mp4") > -1) {
       conteneur.innerHTML = `
-            <video src="${url}" controls></video>
+            <video src="${url}" controls="" autoplay=""></video>
             <div class="lightbox__titre">${titreAlt}</div>
       `;
       this.url = url;

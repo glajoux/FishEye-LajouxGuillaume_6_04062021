@@ -80,7 +80,7 @@ class photographe {
 }
 
 class fabriqueMediaVignette {
-  fabrique(mediaDuPhotographe, eleDOM, nbrDeLike) {
+  fabrique(mediaDuPhotographe, eleDOM, nbrDeLike, prixDuPhotographe) {
     mediaDuPhotographe.forEach((media) => {
       nbrDeLike += media.likes;
       // vérifie si il y a une clé image ou video dans media
@@ -92,6 +92,13 @@ class fabriqueMediaVignette {
         videoModel.createVideo(eleDOM);
       }
     });
+    eleDOM.innerHTML += `
+  <div class="tarif">
+    <p class="tarif__like like"><span class="like__like">${nbrDeLike}</span><img src="./photos/coeur_noir.svg" alt="likes" class="like__coeur">
+    </p>
+    <p class="tarif__prix">${prixDuPhotographe}€ / jour</p>
+  </div>
+  `;
   }
 }
 

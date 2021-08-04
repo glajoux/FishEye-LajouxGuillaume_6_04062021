@@ -82,17 +82,21 @@ window.addEventListener("keyup", function (e) {
       tags.forEach((noeud) => {
         noeud.classList.remove("actif");
       });
-    });
-
-    let tagClass = e.target.className;
-    console.log(tagClass);
-    articles.forEach((article) => {
-      let testTag = article.innerHTML;
-      if (!testTag.includes(tagClass)) {
-        article.classList.add("supprime");
-      } else {
-        article.classList.remove("supprime");
-      }
+      let tagClass = e.target.className;
+      console.log(tagClass);
+      articles.forEach((article) => {
+        let testTag = article.innerHTML;
+        if (!testTag.includes(tagClass)) {
+          article.classList.add("supprime");
+        } else {
+          article.classList.remove("supprime");
+          tags.forEach((noeud) => {
+            if (noeud.className === tagClass) {
+              noeud.classList.add("actif");
+            }
+          });
+        }
+      });
     });
   }
 });

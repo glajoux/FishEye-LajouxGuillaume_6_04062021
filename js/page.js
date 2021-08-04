@@ -3,7 +3,8 @@ import {
   dataPhotographes,
   photographe,
   dataMedias,
-  mediaVignette,
+  // mediaVignette,
+  fabriqueMediaVignette,
   tri,
   likeIncrease,
   navigationClavier,
@@ -52,21 +53,24 @@ async function pagePhotographe() {
   const section = document.querySelector(".media");
   console.log(section);
 
-  function createMedia(mediaDuPhotographe, eleDOM) {
-    mediaDuPhotographe.forEach((media) => {
-      nbrDeLike += media.likes;
-      // vérifie si il y a une clé image ou video dans media
-      if ("image" in media) {
-        let photoModel = new mediaVignette(media);
-        photoModel.createPhoto(eleDOM);
-      } else if ("video" in media) {
-        let videoModel = new mediaVignette(media);
-        videoModel.createVideo(eleDOM);
-      }
-    });
-  }
+  // function createMedia(mediaDuPhotographe, eleDOM) {
+  //   mediaDuPhotographe.forEach((media) => {
+  //     nbrDeLike += media.likes;
+  //     // vérifie si il y a une clé image ou video dans media
+  //     if ("image" in media) {
+  //       let photoModel = new mediaVignette(media);
+  //       photoModel.createPhoto(eleDOM);
+  //     } else if ("video" in media) {
+  //       let videoModel = new mediaVignette(media);
+  //       videoModel.createVideo(eleDOM);
+  //     }
+  //   });
+  // }
 
-  createMedia(idMedias, section);
+  // createMedia(idMedias, section);
+
+  const createMedia = new fabriqueMediaVignette();
+  createMedia.fabrique(idMedias, section, nbrDeLike);
 
   section.innerHTML += `
   <div class="tarif">
@@ -112,7 +116,11 @@ async function pagePhotographe() {
       document.querySelector(".media").innerHTML = "";
       console.log((document.querySelector(".media").innerHTML = ""));
 
-      createMedia(idMedias, document.querySelector(".media"));
+      createMedia.fabrique(
+        idMedias,
+        document.querySelector(".media"),
+        nbrDeLike
+      );
     });
   });
 

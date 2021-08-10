@@ -503,6 +503,9 @@ nav {
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 95px;
 }
+.media:focus {
+  border: 4px solid #901c1c;
+}
 @media (max-width: 768px) {
   .media {
     display: flex;
@@ -582,6 +585,10 @@ nav {
 }
 .vignette__like {
   display: flex;
+}
+.vignette__like:focus {
+  border: 4px solid #901c1c;
+  border-radius: 5px;
 }
 .vignette__like__nbr {
   color: #901c1c;
@@ -777,7 +784,7 @@ nav {
   box-sizing: border-box;
   margin-top: 5%;
   max-width: 1240px;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;

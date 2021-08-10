@@ -5,16 +5,16 @@ class lightbox {
   static initialisation() {
     // Récupère les éléménts du DOM qui contiennent des images et videos
     // et convertie cette nodeList en array
-    const liens = Array.prototype.slice.call(
+    let liens = Array.prototype.slice.call(
       document.querySelectorAll("img[src*='.jpg'], video[src*='mp4']")
     );
-    const retirePremiereImage = liens.shift();
+    let retirePremiereImage = liens.shift();
     console.log(liens);
     console.log(retirePremiereImage);
 
-    const gallerie = liens.map((lien) => lien.getAttribute("src"));
+    let gallerie = liens.map((lien) => lien.getAttribute("src"));
     console.log(gallerie);
-    const titres = liens.map(
+    let titres = liens.map(
       (lien) => lien.nextElementSibling.childNodes[1].innerText
     );
     console.log(titres);
@@ -22,7 +22,7 @@ class lightbox {
     liens.forEach((lien) => {
       lien.addEventListener("click", function (e) {
         e.preventDefault();
-        // console.log(e.currentTarget);
+        console.log(e.currentTarget);
         console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
         new lightbox(
           e.currentTarget.getAttribute("src"),

@@ -32,14 +32,14 @@ async function pagePhotographe() {
   console.log(idPhotographe);
   console.log(idMedias);
 
-  let titres = [];
-  idMedias.forEach((media) => titres.push(media.title)); //Récupères tout les titres pour être utilisé dnas le tri et lightbox
+  // let titres = [];
+  // idMedias.forEach((media) => titres.push(media.title)); //Récupères tout les titres pour être utilisé dnas le tri et lightbox
   let page = new photographe(idPhotographe[0]);
   page.createPagePhotographe(mainPagePhotographe);
   mainPagePhotographe.innerHTML += `
   <div class="selection">
     <div class="selection__tri">Trier par</div>
-    <div class="selection__conteneur">
+    <div class="selection__conteneur" aria-haspopup="true" aria-expanded="false">
       <button class="selection__triage" tabindex="0">Populaire</button>
       <button class="selection__triage" tabindex="0">Date</button>
       <button class="selection__triage" tabindex="0">Titre</button>
@@ -112,12 +112,25 @@ async function pagePhotographe() {
       createMedia.fabrique(
         idMedias,
         document.querySelector(".media"),
-        nbrDeLike
+        nbrDeLike,
+        idPhotographe[0].price
       );
+      lightbox.initialisation();
+      const likeClic = document.querySelectorAll(".vignette__like");
+      console.log(likeClic);
+      let likeTot = document.querySelector(".like__like");
+
+      likeClic.forEach((coeur) => {
+        coeur.addEventListener("click", function () {
+          console.log(coeur);
+          likeIncrease(coeur, likeTot);
+        });
+      });
     });
   });
 
   const likeClic = document.querySelectorAll(".vignette__like");
+  console.log(likeClic);
   let likeTot = document.querySelector(".like__like");
 
   likeClic.forEach((coeur) => {

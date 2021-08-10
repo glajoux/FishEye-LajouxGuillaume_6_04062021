@@ -113,12 +113,13 @@ class mediaImage {
     this.tags = media.tags;
     this.title = media.title;
     this.video = media.video;
+    this.description = media.description;
   }
   // construit une vignette avec une image et l'injecte dans le dom
   createPhoto = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo media"
+        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.description}" class="vignette__photo media"
         tabindex="0">
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
@@ -144,12 +145,13 @@ class mediaVideo {
     this.tags = media.tags;
     this.title = media.title;
     this.video = media.video;
+    this.description = media.description;
   }
   // construit une vignette avec une vidéo et l'injecte dans le dom
   createVideo = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video media"
+        <video src="./photos/${this.photographerId}/${this.video}" title="${this.description}" class="vignette__video media"
         tabindex="0">
         </video>
         <div class="vignette__info">      

@@ -166,54 +166,6 @@ class mediaVideo {
   };
 }
 
-// class mediaVignette {
-//   constructor(media) {
-//     this.date = media.date;
-//     this.id = media.id;
-//     this.image = media.image;
-//     this.likes = media.likes;
-//     this.photographerId = media.photographerId;
-//     this.price = media.price;
-//     this.tags = media.tags;
-//     this.title = media.title;
-//     this.video = media.video;
-//   }
-//   // construit une vignette avec une image et l'injecte dans le dom
-//   createPhoto = function (dom) {
-//     dom.innerHTML += `
-//       <article class="vignette">
-//         <img src="./photos/${this.photographerId}/${this.image}" alt="${this.title}" class="vignette__photo media"
-//         tabindex="0">
-//         <div class="vignette__info">
-//           <p class="vignette__titre">${this.title}</p>
-//           <div class="vignette__like" tabindex="0">
-//             <p class="vignette__like__nbr">${this.likes}</p>
-//             <img src="./photos/coeur.svg" alt="likes" class="vignette__img like">
-//           </div>
-//         </div>
-//       </article>
-
-//     `;
-//   };
-//   // construit une vignette avec une vidéo et l'injecte dans le dom
-//   createVideo = function (dom) {
-//     dom.innerHTML += `
-//       <article class="vignette">
-//         <video src="./photos/${this.photographerId}/${this.video}" class="vignette__video media"
-//         tabindex="0">
-//         </video>
-//         <div class="vignette__info">
-//           <p class="vignette__titre">${this.title}</p>
-//           <div class="vignette__like" tabindex="0">
-//             <p class="vignette__like__nbr">${this.likes}</p>
-//             <img src="./photos/coeur.svg" alt="likes" class="vignette__img like">
-//           </div>
-//         </div>
-//       </article>
-//     `;
-//   };
-// }
-
 // Gestion des likes
 // Au clic on ajoute une class si elle n'est pas présente et on ajoute 1 au nbr de like
 // Sinon on retire la class et on enlève 1
@@ -273,7 +225,6 @@ export {
   dataMedias,
   site,
   fabriqueMediaVignette,
-  // mediaVignette,
   tri,
   likeIncrease,
   navigationClavier,

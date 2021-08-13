@@ -9,8 +9,8 @@ class lightbox {
       document.querySelectorAll("img[src*='.jpg'], video[src*='mp4']")
     );
     let retirePremiereImage = liens.shift();
-    console.log(liens);
     console.log(retirePremiereImage);
+    console.log(liens);
 
     let gallerie = liens.map((lien) => lien.getAttribute("src"));
     console.log(gallerie);
@@ -18,6 +18,18 @@ class lightbox {
       (lien) => lien.nextElementSibling.childNodes[1].innerText
     );
     console.log(titres);
+    let alts = liens.map((lien) => lien.alt);
+    console.log(alts);
+
+    let titles = liens.map((lien) => lien.title);
+    let titleCourant = "";
+    titles.forEach((title) => {
+      if (title !== "") {
+        titleCourant = title;
+      }
+    });
+
+    console.log(titleCourant);
 
     liens.forEach((lien) => {
       lien.addEventListener("click", function (e) {
@@ -26,9 +38,12 @@ class lightbox {
         console.log(e.srcElement.nextElementSibling.childNodes[1].innerText);
         new lightbox(
           e.currentTarget.getAttribute("src"),
+          e.currentTarget.alt,
           e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
           gallerie,
-          titres
+          titres,
+          titleCourant,
+          alts
         );
       });
     });
@@ -40,9 +55,12 @@ class lightbox {
         if (e.key === "Enter") {
           new lightbox(
             e.currentTarget.getAttribute("src"),
+            e.currentTarget.alt,
             e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
             gallerie,
-            titres
+            titres,
+            e.currentTarget.title,
+            alts
           );
         }
       });
@@ -53,12 +71,22 @@ class lightbox {
    *Prends en param l'url de l'image, le titre de l'image,
    *un tableau avec les chemins des images images et un tableau avec les titres
    */
-  constructor(url, titreAlt, medias, infos) {
+  constructor(
+    url,
+    altCourant,
+    titreCourant,
+    gallerie,
+    titres,
+    titleCourant,
+    alts
+  ) {
     this.element = this.constructionDom(url);
-    this.medias = medias;
-    this.infos = infos;
+    this.gallerie = gallerie;
+    this.titres = titres;
+    this.alts = alts;
+    this.titleCourant = titleCourant;
     this.appuieClavier = this.appuieClavier.bind(this);
-    this.afficheMedia(url, titreAlt);
+    this.afficheMedia(url, altCourant, titreCourant, titleCourant);
     document.body.appendChild(this.element);
     document.addEventListener("keyup", this.appuieClavier);
   }
@@ -83,53 +111,63 @@ class lightbox {
   // Méthode qui gère le bouton next et affiche l'image suivante
   next(e) {
     e.preventDefault;
-    let positionIndex = this.medias.findIndex((media) => media === this.url);
-    let positionInfo = this.infos.findIndex((info) => info === this.titreAlt);
-    if (positionIndex === this.medias.length - 1) {
+    let positionIndex = this.gallerie.findIndex((media) => media === this.url);
+    let positionInfo = this.titres.findIndex((info) => info === this.titre);
+    let positionAlt = this.alts.findIndex((alt) => alt === this.alt);
+    if (positionIndex === this.gallerie.length - 1) {
       positionIndex = -1;
       positionInfo = -1;
+      positionAlt = -1;
     }
     this.afficheMedia(
-      this.medias[positionIndex + 1],
-      this.infos[positionInfo + 1]
+      this.gallerie[positionIndex + 1],
+      this.alts[positionAlt + 1],
+      this.titres[positionInfo + 1],
+      this.titleCourant
     );
   }
 
   // Méthode qui gère le bouton prev et affiche l'image precédente
   prev(e) {
     e.preventDefault;
-    let positionIndex = this.medias.findIndex((media) => media === this.url);
-    let positionInfo = this.infos.findIndex((info) => info === this.titreAlt);
-
+    let positionIndex = this.gallerie.findIndex((media) => media === this.url);
+    let positionInfo = this.titres.findIndex((info) => info === this.titre);
+    let positionAlt = this.alts.findIndex((alt) => alt === this.alt);
     if (positionIndex === 0) {
-      positionIndex = this.medias.length;
-      positionInfo = this.infos.length;
+      positionIndex = this.gallerie.length;
+      positionInfo = this.titres.length;
+      positionAlt = this.alts.length;
     }
     this.afficheMedia(
-      this.medias[positionIndex - 1],
-      this.infos[positionInfo - 1]
+      this.gallerie[positionIndex - 1],
+      this.alts[positionAlt - 1],
+      this.titres[positionInfo - 1],
+      this.titleCourant
     );
   }
 
   // Méthode qui affiche soit une image soit une video en fonction de l'élément cliqué
-  afficheMedia(url, titreAlt) {
+  afficheMedia(url, alt, titre, title) {
     this.url = null;
-    this.titreAlt = null;
+    this.alt = null;
+    this.titre = null;
     const conteneur = this.element.querySelector(".lightbox__container");
     if (url.indexOf("jpg") > -1) {
       conteneur.innerHTML = `
-            <img src="${url}" alt="${titreAlt}" />
-            <div class="lightbox__titre">${titreAlt}</div>
+            <img src="${url}" alt="${alt}" />
+            <div class="lightbox__titre">${titre}</div>
       `;
       this.url = url;
-      this.titreAlt = titreAlt;
+      this.alt = alt;
+      this.titre = titre;
     } else if (url.indexOf("mp4") > -1) {
       conteneur.innerHTML = `
-            <video src="${url}" controls="" autoplay=""></video>
-            <div class="lightbox__titre">${titreAlt}</div>
+            <video src="${url}" controls="" autoplay="" title="${title}"></video>
+            <div class="lightbox__titre">${titre}</div>
       `;
       this.url = url;
-      this.titreAlt = titreAlt;
+      this.alt = alt;
+      this.titre = titre;
     }
   }
 

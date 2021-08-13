@@ -3,7 +3,6 @@ import {
   dataPhotographes,
   photographe,
   dataMedias,
-  // mediaVignette,
   fabriqueMediaVignette,
   tri,
   likeIncrease,
@@ -53,22 +52,6 @@ async function pagePhotographe() {
   const section = document.querySelector(".media");
   console.log(section);
 
-  // function createMedia(mediaDuPhotographe, eleDOM) {
-  //   mediaDuPhotographe.forEach((media) => {
-  //     nbrDeLike += media.likes;
-  //     // vérifie si il y a une clé image ou video dans media
-  //     if ("image" in media) {
-  //       let photoModel = new mediaVignette(media);
-  //       photoModel.createPhoto(eleDOM);
-  //     } else if ("video" in media) {
-  //       let videoModel = new mediaVignette(media);
-  //       videoModel.createVideo(eleDOM);
-  //     }
-  //   });
-  // }
-
-  // createMedia(idMedias, section);
-
   const createMedia = new fabriqueMediaVignette();
   createMedia.fabrique(idMedias, section, nbrDeLike, idPhotographe[0].price);
 
@@ -115,9 +98,10 @@ async function pagePhotographe() {
         nbrDeLike,
         idPhotographe[0].price
       );
+
       lightbox.initialisation();
+
       const likeClic = document.querySelectorAll(".vignette__like");
-      console.log(likeClic);
       let likeTot = document.querySelector(".like__like");
 
       likeClic.forEach((coeur) => {

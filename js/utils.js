@@ -16,7 +16,6 @@ const recupJSON = async () => {
 
 let dataPhotographes = [];
 let dataMedias = [];
-let site = "";
 
 // class qui construit les vignettes des photographes.
 class photographe {
@@ -119,7 +118,8 @@ class mediaImage {
   createPhoto = function (dom) {
     dom.innerHTML += `
       <article class="vignette">
-        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.description}" class="vignette__photo media"
+        <img src="./photos/${this.photographerId}/${this.image}" alt="${this.description}" 
+        class="vignette__photo media"
         tabindex="0">
         <div class="vignette__info">      
           <p class="vignette__titre">${this.title}</p>
@@ -223,7 +223,6 @@ export {
   photographe,
   dataPhotographes,
   dataMedias,
-  site,
   fabriqueMediaVignette,
   tri,
   likeIncrease,

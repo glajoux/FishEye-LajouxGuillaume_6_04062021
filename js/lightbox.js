@@ -39,7 +39,7 @@ class lightbox {
         new lightbox(
           e.currentTarget.getAttribute("src"),
           e.currentTarget.alt,
-          e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
+          e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le titre
           gallerie,
           titres,
           titleCourant,
@@ -56,7 +56,7 @@ class lightbox {
           new lightbox(
             e.currentTarget.getAttribute("src"),
             e.currentTarget.alt,
-            e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le alt et le titre
+            e.srcElement.nextElementSibling.childNodes[1].innerText, // Permet de faire le titre
             gallerie,
             titres,
             e.currentTarget.title,

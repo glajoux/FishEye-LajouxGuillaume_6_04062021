@@ -21,8 +21,6 @@ let nbrDeLike = 0; //Variable qui sera affiché pour le nbr total de like en bas
 
 async function pagePhotographe() {
   await recupJSON();
-  // console.log(dataPhotographes);
-  // console.log(dataMedias);
 
   // Récupère les info du photographe en fonction de l'id dans l'url
   let idPhotographe = dataPhotographes.filter((el) => el.id === idUrl);
@@ -31,8 +29,6 @@ async function pagePhotographe() {
   console.log(idPhotographe);
   console.log(idMedias);
 
-  // let titres = [];
-  // idMedias.forEach((media) => titres.push(media.title)); //Récupères tout les titres pour être utilisé dnas le tri et lightbox
   let page = new photographe(idPhotographe[0]);
   page.createPagePhotographe(mainPagePhotographe);
   mainPagePhotographe.innerHTML += `

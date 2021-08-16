@@ -54,8 +54,10 @@ async function pagePhotographe() {
   createModale(mainPagePhotographe, idPhotographe[0].name);
   const contactBouton = document.querySelector(".photographe__contact");
   const modale = document.getElementById("dialog");
+
   contactBouton.addEventListener("click", function () {
     modale.style.visibility = "visible";
+    modale.querySelector("#prenom").focus();
   });
 
   const closeBouton = document.querySelector(".box__close");

@@ -20,6 +20,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    &:focus {
+      border: 4px solid $color-prim;
+    }
   }
   &__img {
     @include user-img;

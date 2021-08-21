@@ -68,8 +68,7 @@ class photographe {
             .join("")}
           </ul>
         </div>
-        <button class="photographe__contact" type="button" aria-labeldby="Ouvre le formulaire de contact
-        ">Contactez-moi</button>
+        <button class="photographe__contact" type="button" aria-label="Ouvre la modale">Contactez-moi</button>
         <img src="./photos/Photographers_ID_Photos/${this.portrait}" alt="${
       this.name
     }" class="photographe__image">    

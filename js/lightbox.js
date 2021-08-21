@@ -176,9 +176,9 @@ class lightbox {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
     dom.innerHTML = `
-            <button class="lightbox__close">Fermer</button>
-            <button class="lightbox__next">Suivant</button>
-            <button class="lightbox__prev">Précédent</button>
+            <button class="lightbox__close" aria-label= "ferme la lightbox">Fermer</button>
+            <button class="lightbox__next" aria-label = "média suivant">Suivant</button>
+            <button class="lightbox__prev" aria-label = "média précédent">Précédent</button>
             <div class="lightbox__container"></div>
          `;
     dom

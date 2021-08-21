@@ -15,8 +15,6 @@ const createModale = (dom, photographe) => {
     id="dialog"
     class="modale"
     role="dialog"
-    aria-labelledby="dialog-title"
-    aria-describedby="dialog-desc"
     aria-modal="true"
     tabindex="1"
   >
@@ -53,10 +51,10 @@ const createModale = (dom, photographe) => {
           <span class="box__erreur erreur__message"></span>
         </p>
         <p>
-          <button type="submit" class="box__submit">Envoyer</button>
+          <button type="submit" class="box__submit" aria-label="bouton d'envoie du formaulaire">Envoyer</button>
         </p>
       </form>
-      <button type="button" arial-label="close contact me" class="box__close" tabindex="1">
+      <button type="button" aria-label="femre la modale" class="box__close" tabindex="1">
         <svg
           width="42"
           height="42"
